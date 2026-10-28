@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nobody was getting in a stranger's car</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon:#763b56; --navy:#3b5576; --sky:#7da3cc; --mist:#eceff1;
+  --teal:#31dcc5; --white:#ffffff;
+  --text:#2b2530; --muted:#7a6b74; --rule:#ded4d9;
+  --head:Helvetica,"Helvetica Neue",Arial,sans-serif;
+  --body:"Lato",Inter,"Open Sans","Source Sans Pro",Roboto,Helvetica,Arial,sans-serif;
+  --gut:clamp(18px,4.2vw,80px); --pad:clamp(14px,3vw,44px);
+  --ease:cubic-bezier(.65,0,.35,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--white);color:var(--text);font-family:var(--body);
+  font-size:clamp(15.5px,1.05vw,18px);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--pad)}
+p{margin:0 0 .9em}
+p:last-child{margin-bottom:0}
+h1,h2,h3,h4,h5{font-family:var(--head);font-weight:700;color:var(--maroon);margin:0}
+a{color:var(--maroon)}
+.lab{font-family:var(--head);font-weight:700;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase}
+.sr{position:fixed;top:50%;left:0;width:1px;height:1px;opacity:0;pointer-events:none;margin:0}
+
+.masthead{border-top:5px solid var(--teal);border-bottom:1px solid var(--rule);padding:.9em 0}
+.masthead .wrap{display:flex;flex-wrap:wrap;gap:.4em 1.5em;align-items:baseline}
+.masthead .lab{color:var(--maroon)}
+.masthead .lab.alt{color:var(--muted)}
+
+.keynote{background:var(--mist);padding:1.1em 0;border-bottom:1px solid var(--rule)}
+.keynote .wrap{max-width:78ch}
+.keynote .lab{color:var(--navy);display:block;margin-bottom:.35em}
+.keynote p{font-size:.92rem;color:var(--maroon);margin:0}
+
+.hero{background:var(--maroon);color:var(--mist);position:relative;overflow:hidden;
+  padding:clamp(38px,7vh,92px) 0 clamp(30px,5vh,64px)}
+.hero::after{content:"";position:absolute;right:-10%;top:-45%;width:52%;height:190%;
+  background:radial-gradient(closest-side,rgba(125,163,204,.42),rgba(125,163,204,0) 70%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero .eyebrow{color:var(--teal);display:block;margin-bottom:clamp(16px,2.6vh,28px)}
+.hero h1{color:var(--white);font-size:clamp(2rem,5.6vw,4.5rem);line-height:.99;
+  letter-spacing:-.033em;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero-lede{margin-top:clamp(18px,3vh,32px);font-size:clamp(1.06rem,1.6vw,1.34rem);
+  line-height:1.45;font-weight:300;max-width:52ch;color:var(--mist)}
+.hero-lede b{font-weight:700;color:var(--teal)}
+.hero .src{color:var(--mist);opacity:.78;margin-top:1em;max-width:52ch}
+.hero-stand{margin-top:clamp(16px,2.4vh,26px);padding-top:clamp(14px,2vh,22px);
+  border-top:1px solid rgba(236,239,241,.28);font-size:clamp(.88rem,1.15vw,1rem);
+  line-height:1.6;max-width:54ch;color:var(--mist);font-weight:300}
+.hero-stand p{margin:0 0 .7em}
+.hero-stand p:last-child{margin:0}
+.hero-stand b{font-weight:700;color:var(--teal)}
+.map{margin:1.3em 0 .3em;padding:1em 1.15em;background:var(--mist);border-left:4px solid var(--maroon)}
+.map .lab{color:var(--maroon);display:block;margin-bottom:.55em}
+.map ol{margin:0;padding-left:1.25em;columns:2;column-gap:2.2em;font-size:.93em}
+.map li{margin:.24em 0;break-inside:avoid}
+.map a{color:var(--navy);text-decoration:underline;text-decoration-color:var(--sky);text-underline-offset:3px}
+@media(max-width:560px){.map ol{columns:1}}
+
+.origin{padding:clamp(28px,4.5vh,56px) 0;border-bottom:1px solid var(--rule)}
+.origin .inner{max-width:60ch;border-left:5px solid var(--navy);padding-left:clamp(16px,2.4vw,28px)}
+.origin .lab{color:var(--navy);display:block;margin-bottom:1em}
+.origin p{font-size:1.05em}
+
+.colbar{position:sticky;top:0;z-index:20;border-bottom:3px solid var(--teal);
+  background:linear-gradient(to right,var(--navy) 0 50%,var(--maroon) 50% 100%)}
+.colbar .wrap{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--gut)}
+.colbar .side{padding:.7em 0;display:flex;align-items:center;gap:.5em}
+.colbar .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);flex:none}
+.colbar .lab{color:var(--white)}
+
+.scene{padding:clamp(32px,5vh,68px) 0;border-bottom:1px solid var(--rule)}
+.scene.alt{background:var(--mist);border-bottom-color:var(--sky)}
+.scene-head{max-width:64ch;margin-bottom:clamp(20px,3vh,38px)}
+.scene-n{color:var(--navy);display:block;margin-bottom:.7em}
+.scene-n::before{content:"";display:inline-block;width:22px;height:4px;background:var(--teal);
+  vertical-align:middle;margin-right:.75em;margin-top:-2px}
+.scene-title{font-size:clamp(1.42rem,3vw,2.4rem);line-height:1.07;letter-spacing:-.022em}
+.scene-lede{margin-top:.6em;color:var(--muted);max-width:58ch;font-weight:300;font-size:1.05em}
+
+.compare{position:relative;display:grid;grid-template-columns:1fr 1fr;
+  column-gap:var(--gut);row-gap:clamp(14px,2vh,24px);align-items:start}
+.compare::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-1px);
+  background:linear-gradient(to bottom,var(--navy),var(--sky) 45%,var(--maroon))}
+.axis-row{grid-column:1/-1;text-align:center;position:relative;padding:1.25em 0;z-index:1}
+.axis-row span{background:var(--white);padding:0 1.5em;position:relative;color:var(--navy);
+  font-family:var(--head);font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.axis-row::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--rule)}
+.scene.alt .axis-row span{background:var(--mist)}
+.cell h4{font-size:clamp(1rem,1.45vw,1.14rem);line-height:1.24;margin-bottom:.45em}
+.cell-a h4{color:var(--navy)}
+.cell-b h4{color:var(--maroon)}
+.cell p{font-size:.97em}
+blockquote{margin:.9em 0 0;padding:.15em 0 .15em .95em;border-left:4px solid var(--teal);
+  font-family:var(--head);font-weight:400;font-size:1rem;line-height:1.28;color:var(--navy)}
+.cell-b blockquote{color:var(--maroon)}
+blockquote cite{display:block;margin-top:.55em;font-style:normal;font-family:var(--head);
+  font-weight:700;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+.digest{background:var(--mist);padding:clamp(16px,2.4vw,28px);margin:clamp(22px,3vh,40px) 0;
+  border-left:6px solid var(--maroon)}
+.scene.alt .digest{background:var(--white)}
+.digest .lab{color:var(--maroon);display:block;margin-bottom:.7em}
+.digest h4{font-size:clamp(1.06rem,1.8vw,1.34rem);margin-bottom:.45em;letter-spacing:-.015em}
+.digest p{font-size:.97em}
+.digest.field{border-left-color:var(--navy)}
+.digest.field .lab,.digest.field h4{color:var(--navy)}
+.digest.caution{background:var(--white);border:1px solid var(--rule);border-left:6px solid var(--teal)}
+.scene.alt .digest.caution{background:var(--mist)}
+.digest.caution .lab{color:var(--navy)}
+.plain{margin-top:1em;padding:.85em 1em;background:var(--white);border-left:4px solid var(--teal)}
+.scene.alt .plain{background:var(--mist)}
+.plain .lab{color:var(--navy);display:block;margin-bottom:.4em;font-size:.57rem}
+.plain p{font-size:.95em;margin:0}
+
+.tool{border:1px solid var(--rule);margin:clamp(22px,3vh,42px) 0;background:var(--white)}
+.tool-head{background:var(--maroon);color:var(--white);padding:.85em clamp(14px,2vw,24px);
+  border-bottom:4px solid var(--teal);
+  display:flex;flex-wrap:wrap;gap:.35em 1.1em;justify-content:space-between;align-items:baseline}
+.tool-head h4{color:var(--white);font-size:1.02rem}
+.tool-head .lab{color:var(--teal)}
+.tool-body{padding:clamp(15px,2.3vw,28px)}
+.tool-note{margin-top:1.2em;padding-top:.9em;border-top:1px solid var(--rule);color:var(--muted);font-size:.9em}
+.src{display:block;margin-top:.6em;font-family:var(--head);font-weight:700;font-size:.58rem;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.warnband{background:var(--navy);color:var(--white);padding:.75em 1em;margin-bottom:1.1em;font-size:.88rem}
+.warnband span{color:var(--teal);letter-spacing:.16em;text-transform:uppercase;font-size:.6rem;
+  font-family:var(--head);font-weight:700;display:block;margin-bottom:.25em}
+
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:.6em .65em;margin-bottom:.55em}
+.ctl-lab{color:var(--navy);font-family:var(--head);font-weight:700;font-size:.61rem;
+  letter-spacing:.14em;text-transform:uppercase;margin-right:.2em}
+.ctl label,.choices label{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--head);font-weight:700;letter-spacing:.02em;line-height:1.18;text-align:center;
+  background:var(--white);color:var(--maroon);border:1.5px solid var(--sky);border-radius:4px;
+  cursor:pointer;animation:invite 3.6s var(--ease) infinite;
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease),
+             background .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease)}
+.ctl label{font-size:.78rem;padding:.62em .95em}
+.choices label{font-size:.88rem;padding:.68em 1.05em;border-color:var(--maroon);max-width:26ch}
+.ctl label::after,.choices label::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:2px;background:var(--teal);
+  transform:scaleX(0);transition:transform .22s var(--ease)}
+.ctl label:hover,.choices label:hover{border-color:var(--maroon);transform:translateY(-2px);
+  box-shadow:0 6px 14px -6px rgba(118,59,86,.55);animation:none}
+.ctl label:hover::after,.choices label:hover::after{transform:scaleX(1)}
+.ctl label:nth-of-type(2),.choices label:nth-of-type(2){animation-delay:.12s}
+.ctl label:nth-of-type(3),.choices label:nth-of-type(3){animation-delay:.24s}
+.ctl label:nth-of-type(4),.choices label:nth-of-type(4){animation-delay:.36s}
+@keyframes invite{0%,70%,100%{box-shadow:0 0 0 0 rgba(49,220,197,0)}
+  35%{box-shadow:0 0 0 6px rgba(49,220,197,.34)}}
+.choices{display:flex;flex-wrap:wrap;gap:.5em}
+
+.poke{display:inline-block;position:relative;margin:0 0 1.15em;
+  background:var(--teal);color:var(--navy);border-radius:4px;
+  font-family:var(--head);font-weight:700;font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;padding:.55em .9em;animation:bob 1.9s var(--ease) infinite alternate}
+.poke::after{content:"";position:absolute;left:20px;bottom:-8px;width:0;height:0;
+  border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid var(--teal)}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+.hint{color:var(--muted);font-size:.79rem;margin-bottom:1.25em}
+.hint::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--teal);margin-right:.55em;vertical-align:middle}
+
+.panels{display:grid}
+.panel{grid-area:1/1;opacity:0;
+  animation-iteration-count:infinite;animation-direction:alternate;animation-timing-function:var(--ease)}
+.panel .say{font-family:var(--head);font-weight:700;font-size:clamp(1.04rem,1.9vw,1.4rem);
+  line-height:1.16;letter-spacing:-.018em;color:var(--maroon);margin-bottom:.5em}
+.panel .hears{color:var(--navy);font-family:var(--head);font-weight:700;font-size:.6rem;
+  letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:.35em}
+.panel p{font-size:.97em;max-width:68ch}
+@keyframes slotA{0%,26%{opacity:1}33%,100%{opacity:0}}
+@keyframes slotB{0%,26%{opacity:0}33%,59%{opacity:1}66%,100%{opacity:0}}
+@keyframes slotC{0%,59%{opacity:0}66%,100%{opacity:1}}
+
+/* ===== artwork shared ===== */
+.art{display:block;width:100%;height:auto;background:var(--mist);overflow:visible}
+.artwrap{padding:clamp(8px,1.4vw,16px) clamp(8px,1.6vw,20px) clamp(4px,1vw,12px);
+  background:var(--mist);margin-bottom:1.1em}
+.scene.alt .artwrap{background:var(--white)}
+.scene.alt .art{background:var(--white)}
+.arttxt{font-family:Helvetica,Arial,sans-serif;font-weight:400;font-style:italic;font-size:16px;
+  fill:var(--muted);letter-spacing:0}
+.artbig{font-family:Helvetica,Arial,sans-serif;font-weight:700;font-size:19px;fill:var(--navy)}
+.artnote{font-family:Helvetica,Arial,sans-serif;font-weight:400;font-style:italic;font-size:16px;
+  fill:var(--maroon)}
+
+/* ===== the pattern machine ===== */
+.gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.3em;margin-top:1.2em}
+.gauge h6{font-family:var(--head);font-weight:700;font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;margin:0 0 .5em;color:var(--navy)}
+.gtrack{height:22px;background:var(--mist);border:1px solid var(--rule);position:relative;overflow:hidden}
+.scene.alt .gtrack{background:var(--white)}
+.gtrack i{display:block;height:100%;width:0;background:var(--maroon);
+  transition:width .6s var(--ease);animation-timing-function:var(--ease)}
+.gtrack.unknown{background:repeating-linear-gradient(45deg,var(--mist) 0 8px,var(--white) 8px 16px)}
+.gtrack.unknown::after{content:"nobody measured this";position:absolute;inset:0;display:flex;
+  align-items:center;justify-content:center;font-family:var(--head);font-weight:700;
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy)}
+.gauge p{font-size:.86em;color:var(--muted);margin:.5em 0 0}
+@keyframes gA{0%,26%{width:88%}33%,59%{width:54%}66%,100%{width:11%}}
+.gtrack i.live{animation:gA 12s infinite alternate var(--ease);width:11%}
+#m1:checked ~ .gauges .gtrack i.live{animation:none;width:88%}
+#m2:checked ~ .gauges .gtrack i.live{animation:none;width:54%}
+#m3:checked ~ .gauges .gtrack i.live{animation:none;width:11%}
+.panels.pm .panel.a{animation-name:slotA;animation-duration:12s}
+.panels.pm .panel.b{animation-name:slotB;animation-duration:12s}
+.panels.pm .panel.c{animation-name:slotC;animation-duration:12s;opacity:1}
+#m1:checked ~ .panels .panel,#m2:checked ~ .panels .panel,#m3:checked ~ .panels .panel{
+  animation:none;opacity:0;transition:opacity .3s var(--ease)}
+#m1:checked ~ .panels .a{opacity:1}
+#m2:checked ~ .panels .b{opacity:1}
+#m3:checked ~ .panels .c{opacity:1}
+#m1:checked ~ .ctl label[for=m1],#m2:checked ~ .ctl label[for=m2],
+#m3:checked ~ .ctl label[for=m3]{background:var(--maroon);border-color:var(--maroon);color:var(--white)}
+#m1:focus-visible ~ .ctl label[for=m1],#m2:focus-visible ~ .ctl label[for=m2],
+#m3:focus-visible ~ .ctl label[for=m3]{outline:3px solid var(--teal);outline-offset:2px}
+#m1:checked ~ .poke,#m2:checked ~ .poke,#m3:checked ~ .poke{display:none}
+#m1:checked ~ .ctl label,#m2:checked ~ .ctl label,#m3:checked ~ .ctl label{animation:none}
+
+/* ===== the two jars ===== */
+.jars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1em}
+.jarbody{fill:var(--white);stroke:var(--navy);stroke-width:3}
+.scene.alt .jarbody{fill:var(--mist)}
+.jarlid{fill:var(--navy)}
+.jdot{fill:var(--sky)}
+.jdot.hot{fill:var(--maroon)}
+.jfog{fill:var(--maroon);opacity:.16}
+.jq{font-family:Helvetica,Arial,sans-serif;font-weight:700;font-size:30px;fill:var(--maroon);opacity:.75}
+.jarcell{transition:opacity .35s var(--ease)}
+#j1:checked ~ .jars .jc-2,#j2:checked ~ .jars .jc-1{opacity:.3}
+#j1:checked ~ .choices label[for=j1],#j2:checked ~ .choices label[for=j2]{
+  background:var(--maroon);border-color:var(--maroon);color:var(--white)}
+#j1:focus-visible ~ .choices label[for=j1],#j2:focus-visible ~ .choices label[for=j2]{
+  outline:3px solid var(--teal);outline-offset:2px}
+#j1:checked ~ .poke,#j2:checked ~ .poke{display:none}
+#j1:checked ~ .choices label,#j2:checked ~ .choices label{animation:none}
+#j1:checked ~ .verdicts .v1,#j2:checked ~ .verdicts .v2{display:block}
+
+/* ===== the curve ===== */
+.cpath{fill:none;stroke-linecap:round}
+.c-before{stroke:var(--navy);stroke-width:3.5}
+.c-after{stroke:var(--maroon);stroke-width:3.5;stroke-dasharray:10 8}
+.chl{opacity:0}
+.clab{font-family:Helvetica,Arial,sans-serif;font-weight:700;font-size:17px}
+.clab.bump{fill:var(--maroon)}
+.clab.tail{fill:var(--navy)}
+.cleg{font-family:Helvetica,Arial,sans-serif;font-weight:700;font-size:14px;fill:var(--muted)}
+@keyframes q1{0%,20%{opacity:1}25%,100%{opacity:0}}
+@keyframes q2{0%,20%{opacity:0}25%,45%{opacity:1}50%,100%{opacity:0}}
+@keyframes q3{0%,45%{opacity:0}50%,70%{opacity:1}75%,100%{opacity:0}}
+@keyframes q4{0%,70%{opacity:0}75%,100%{opacity:1}}
+@keyframes cAfter{0%,70%{opacity:0}75%,100%{opacity:1}}
+@keyframes cBump{0%,45%{opacity:0}50%,70%{opacity:1}75%,100%{opacity:0}}
+@keyframes cTail{0%,70%{opacity:0}75%,100%{opacity:1}}
+.chl.bump,.chl.tail{animation:cTail 18s infinite alternate var(--ease)}
+.chl.tail{opacity:1}
+.zone{opacity:0}
+.zone.z1{animation:q1 18s infinite alternate var(--ease)}
+.zone.z2{animation:q2 18s infinite alternate var(--ease)}
+.zone.z3{animation:q3 18s infinite alternate var(--ease)}
+.zlab{font-family:Helvetica,Arial,sans-serif;font-weight:700;font-size:16px;fill:var(--navy)}
+.panels.pc .panel.a{animation-name:q1;animation-duration:18s}
+.panels.pc .panel.b{animation-name:q2;animation-duration:18s}
+.panels.pc .panel.c{animation-name:q3;animation-duration:18s}
+.panels.pc .panel.d{animation-name:q4;animation-duration:18s;opacity:1}
+#c1:checked ~ .artwrap .afterWrap,#c2:checked ~ .artwrap .afterWrap,
+#c3:checked ~ .artwrap .afterWrap,#c4:checked ~ .artwrap .afterWrap,
+#c1:checked ~ .artwrap .chl,#c2:checked ~ .artwrap .chl,
+#c3:checked ~ .artwrap .chl,#c4:checked ~ .artwrap .chl,
+#c1:checked ~ .artwrap .zone,#c2:checked ~ .artwrap .zone,
+#c3:checked ~ .artwrap .zone,#c4:checked ~ .artwrap .zone{
+  animation:none;opacity:0;transition:opacity .4s var(--ease)}
+#c4:checked ~ .artwrap .afterWrap{opacity:1}
+#c4:checked ~ .artwrap .chl.bump,#c4:checked ~ .artwrap .chl.tail{opacity:1}
+#c1:checked ~ .artwrap .z1{opacity:1}
+#c2:checked ~ .artwrap .z2{opacity:1}
+#c3:checked ~ .artwrap .z3{opacity:1}
+#c1:checked ~ .panels .panel,#c2:checked ~ .panels .panel,
+#c3:checked ~ .panels .panel,#c4:checked ~ .panels .panel{
+  animation:none;opacity:0;transition:opacity .3s var(--ease)}
+#c1:checked ~ .panels .a{opacity:1}
+#c2:checked ~ .panels .b{opacity:1}
+#c3:checked ~ .panels .c{opacity:1}
+#c4:checked ~ .panels .d{opacity:1}
+#c1:checked ~ .ctl label[for=c1],#c2:checked ~ .ctl label[for=c2],
+#c3:checked ~ .ctl label[for=c3],#c4:checked ~ .ctl label[for=c4]{
+  background:var(--maroon);border-color:var(--maroon);color:var(--white)}
+#c1:focus-visible ~ .ctl label[for=c1],#c2:focus-visible ~ .ctl label[for=c2],
+#c3:focus-visible ~ .ctl label[for=c3],#c4:focus-visible ~ .ctl label[for=c4]{
+  outline:3px solid var(--teal);outline-offset:2px}
+#c1:checked ~ .poke,#c2:checked ~ .poke,#c3:checked ~ .poke,#c4:checked ~ .poke{display:none}
+#c1:checked ~ .ctl label,#c2:checked ~ .ctl label,
+#c3:checked ~ .ctl label,#c4:checked ~ .ctl label{animation:none}
+
+/* ===== click-only reveals ===== */
+.card{background:var(--mist);padding:1em 1.2em;margin-bottom:1.3em;border-left:5px solid var(--sky)}
+.scene.alt .card{background:var(--white)}
+.card dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.85em;margin:0}
+.card dt{font-family:var(--head);font-weight:700;font-size:.55rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted)}
+.card dd{margin:.22em 0 0;font-family:var(--head);font-weight:700;font-size:.92rem;color:var(--navy)}
+.vd{display:none;margin-top:1.3em;padding-top:1.1em;border-top:4px solid var(--teal)}
+.vd h5{font-size:clamp(1.04rem,2vw,1.4rem);line-height:1.14;letter-spacing:-.018em;
+  color:var(--maroon);margin-bottom:.5em}
+.vd .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.4em;margin-top:1em}
+.vd .two h6{font-family:var(--head);font-weight:700;font-size:.6rem;letter-spacing:.15em;
+  text-transform:uppercase;margin:0 0 .4em;color:var(--navy)}
+.vd .two div:last-child h6{color:var(--maroon)}
+#b1:checked ~ .choices label[for=b1],#b2:checked ~ .choices label[for=b2],
+#b3:checked ~ .choices label[for=b3],#b4:checked ~ .choices label[for=b4]{
+  background:var(--maroon);border-color:var(--maroon);color:var(--white)}
+#b1:focus-visible ~ .choices label[for=b1],#b2:focus-visible ~ .choices label[for=b2],
+#b3:focus-visible ~ .choices label[for=b3],#b4:focus-visible ~ .choices label[for=b4]{
+  outline:3px solid var(--teal);outline-offset:2px}
+#b1:checked ~ .poke,#b2:checked ~ .poke,#b3:checked ~ .poke,#b4:checked ~ .poke{display:none}
+#b1:checked ~ .choices label,#b2:checked ~ .choices label,
+#b3:checked ~ .choices label,#b4:checked ~ .choices label{animation:none}
+#b1:checked ~ .verdicts .v1,#b2:checked ~ .verdicts .v2,
+#b3:checked ~ .verdicts .v3,#b4:checked ~ .verdicts .v4{display:block}
+
+.reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.reveal-in{overflow:hidden;min-height:0}
+#r1:checked ~ .reveal,#r2:checked ~ .reveal,#r3:checked ~ .reveal,
+#r4:checked ~ .reveal{grid-template-rows:1fr}
+.rp-wrap{display:grid;padding-top:1.4em}
+.rp{grid-area:1/1;opacity:0;transform:translateY(10px) scale(.97);transform-origin:top left;
+  transition:opacity .42s .08s var(--ease),transform .42s .08s var(--ease)}
+#r1:checked ~ .reveal .rp-1,#r2:checked ~ .reveal .rp-2,
+#r3:checked ~ .reveal .rp-3,#r4:checked ~ .reveal .rp-4{opacity:1;transform:none}
+.rp .verdict{font-family:var(--head);font-weight:700;font-size:clamp(1.04rem,1.9vw,1.38rem);
+  line-height:1.16;letter-spacing:-.018em;color:var(--maroon);margin-bottom:.5em}
+.rp .who{color:var(--navy);font-family:var(--head);font-weight:700;font-size:.6rem;
+  letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:.35em}
+#r1:checked ~ .ctl label[for=r1],#r2:checked ~ .ctl label[for=r2],
+#r3:checked ~ .ctl label[for=r3],#r4:checked ~ .ctl label[for=r4]{
+  background:var(--maroon);border-color:var(--maroon);color:var(--white)}
+#r1:focus-visible ~ .ctl label[for=r1],#r2:focus-visible ~ .ctl label[for=r2],
+#r3:focus-visible ~ .ctl label[for=r3],#r4:focus-visible ~ .ctl label[for=r4]{
+  outline:3px solid var(--teal);outline-offset:2px}
+#r1:checked ~ .poke,#r2:checked ~ .poke,#r3:checked ~ .poke,#r4:checked ~ .poke{display:none}
+#r1:checked ~ .ctl label,#r2:checked ~ .ctl label,
+#r3:checked ~ .ctl label,#r4:checked ~ .ctl label{animation:none}
+.tell{margin-top:1.4em;padding:1em 1.15em;background:var(--teal);color:var(--navy)}
+.tell .lab{color:var(--navy);display:block;margin-bottom:.4em}
+.tell p{font-size:.97em;margin:0;font-weight:700}
+
+.policy{border:2px solid var(--navy);margin:clamp(22px,3vh,40px) 0;background:var(--white)}
+.policy-head{background:var(--navy);color:var(--white);padding:.9em clamp(14px,2vw,22px)}
+.policy-head h4{color:var(--white);font-size:1.06rem;margin-bottom:.25em}
+.policy-head p{color:var(--mist);font-size:.87rem;margin:0;max-width:70ch}
+.policy-body{padding:clamp(15px,2.3vw,26px)}
+.policy ol{margin:0;padding-left:1.3em}
+.policy li{margin-bottom:1em;font-size:.97em}
+.policy li:last-child{margin-bottom:0}
+.policy li b{color:var(--maroon);font-family:var(--head);display:block;font-size:.94rem;margin-bottom:.2em}
+.policy-foot{margin-top:1.4em;padding-top:1em;border-top:1px solid var(--rule);
+  color:var(--muted);font-size:.89em}
+
+.pull{font-family:var(--head);font-weight:700;font-size:clamp(1.2rem,2.7vw,2.05rem);line-height:1.12;
+  letter-spacing:-.024em;color:var(--white);background:var(--maroon);max-width:31ch;
+  margin:clamp(24px,3.5vh,48px) 0;padding:clamp(16px,2.2vw,26px);border-left:8px solid var(--teal)}
+
+.people{padding:clamp(32px,5vh,68px) 0}
+.people h2{font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:-.02em;margin-bottom:.4em}
+.people .intro{color:var(--muted);max-width:60ch;font-weight:300;margin-bottom:clamp(20px,3vh,34px)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule)}
+.person{background:var(--white);padding:clamp(14px,2vw,20px);border-top:5px solid var(--maroon)}
+.person h3{font-size:1.06rem;letter-spacing:-.012em;margin-bottom:.15em}
+.person .role{color:var(--navy);font-weight:700;font-size:.87rem;display:block;margin-bottom:.15em}
+.person .where{color:var(--muted);font-size:.83rem;display:block;margin-bottom:.8em}
+.person p{font-size:.9em}
+.person .orcid{display:block;margin-top:.9em;padding-top:.7em;border-top:1px solid var(--rule);
+  font-family:var(--head);font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}
+
+footer{padding:clamp(30px,5vh,62px) 0 clamp(36px,7vh,88px);background:var(--maroon);color:var(--mist)}
+footer strong{color:var(--white)}
+.cite{max-width:74ch;font-size:.9rem;line-height:1.75}
+.cite a{color:var(--teal)}
+.thanks{max-width:74ch;margin-bottom:1.7em;padding-bottom:1.4em;
+  border-bottom:1px solid rgba(236,239,241,.25)}
+.thanks .lab{color:var(--teal);display:block;margin-bottom:.5em}
+
+@media (max-width:760px){
+  .arttxt{font-size:20px}
+  .artbig{font-size:24px}
+  .artnote{font-size:21px}
+  .clab{font-size:21px}
+  .cleg{font-size:18px}
+  .jq{font-size:34px}
+}
+@media (max-width:700px){
+  body{font-size:14.5px;line-height:1.55}
+  blockquote{font-size:.94rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .panel,.c-after,.chl,.ctl label,.choices label,.poke,.gtrack i,
+  .bk,.gapbar,.falling,.walker,.leapArc,.rejected,.seal,.cbar,.rider,.curveRider,
+  .afterWrap,.nod,.doc,.zone,.doc1,.doc2,.doc3,
+  .pulseDot,.carIdle,.wheel,.puff,.lamp,.linkLine,.halo,
+  .hero-art .qm,.fog1,.fog2,.fog3,.jq{animation:none !important}
+  .reveal,.rp{transition:none !important}
+}
+
+/* ===== v17: sliding book, hero illustration, nicer jars ===== */
+
+/* hero becomes a two-column layout with artwork */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(18px,4vw,54px);align-items:center}
+.hero-art{width:100%;height:auto;display:block;overflow:visible}
+.hero-art .ln{fill:none;stroke:var(--mist);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.hero-art .accent{fill:var(--teal)}
+.hero-art .faint{stroke:var(--sky);opacity:.75}
+.hero-art .qm{font-family:Helvetica,Arial,sans-serif;font-weight:700;font-size:34px;fill:var(--teal)}
+.hero-art .cap{font-family:Helvetica,Arial,sans-serif;font-weight:400;font-style:italic;
+  font-size:16px;fill:var(--sky);letter-spacing:0}
+@keyframes hesitate{0%,100%{transform:translateX(0)}50%{transform:translateX(-7px)}}
+.hero-art .walker{animation:hesitate 4.5s var(--ease) infinite}
+@media (max-width:880px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-art{max-width:440px;margin-top:1.4em}
+}
+
+/* the book that slides out of the shelf */
+.bk{transform:translateX(200px);animation:bkRun 12s infinite alternate var(--ease)}
+.gapbar{transform-box:fill-box;transform-origin:left center;
+  transform:scaleX(204);animation:gapRun 12s infinite alternate var(--ease)}
+@keyframes bkRun{0%,26%{transform:translateX(0)}33%,59%{transform:translateX(96px)}
+  66%,100%{transform:translateX(200px)}}
+@keyframes gapRun{0%,26%{transform:scaleX(4)}33%,59%{transform:scaleX(100)}
+  66%,100%{transform:scaleX(204)}}
+#m1:checked ~ .artwrap .bk,#m2:checked ~ .artwrap .bk,#m3:checked ~ .artwrap .bk,
+#m1:checked ~ .artwrap .gapbar,#m2:checked ~ .artwrap .gapbar,#m3:checked ~ .artwrap .gapbar{
+  animation:none;transition:transform .55s var(--ease)}
+#m1:checked ~ .artwrap .bk{transform:translateX(0)}
+#m2:checked ~ .artwrap .bk{transform:translateX(96px)}
+#m3:checked ~ .artwrap .bk{transform:translateX(200px)}
+#m1:checked ~ .artwrap .gapbar{transform:scaleX(4)}
+#m2:checked ~ .artwrap .gapbar{transform:scaleX(100)}
+#m3:checked ~ .artwrap .gapbar{transform:scaleX(204)}
+
+/* jars */
+.jarglass{fill:var(--white);stroke:var(--navy);stroke-width:2.5}
+.scene.alt .jarglass{fill:var(--mist)}
+.jarshine{fill:none;stroke:var(--white);stroke-width:7;stroke-linecap:round;opacity:.85}
+.scene.alt .jarshine{stroke:var(--mist)}
+.jarcap{fill:var(--navy)}
+.jarrim{fill:none;stroke:var(--navy);stroke-width:2.5}
+@keyframes drop1{0%{transform:translateY(-22px);opacity:0}
+  20%{opacity:1}70%{opacity:1}100%{transform:translateY(96px);opacity:0}}
+.falling{animation:drop1 2.8s var(--ease) infinite}
+.falling.two{animation-delay:1.1s}
+.falling.three{animation-delay:1.9s}
+
+/* ===== v18: jar polish, probability lines, more artwork ===== */
+.jdot{filter:none}
+.jhalo{opacity:.28}
+.prob{font-family:var(--head);font-weight:700;text-align:center;margin:.55em 0 0;
+  font-size:1rem;color:var(--navy);letter-spacing:.01em}
+.prob b{color:var(--maroon)}
+.prob span{display:block;font-family:var(--head);font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-top:.4em;font-weight:700}
+.artband{margin:0 0 clamp(20px,3vh,34px)}
+.artband .art{background:var(--mist)}
+.scene.alt .artband .art{background:var(--white)}
+.artband figcaption{color:var(--muted);font-size:.85rem;margin-top:.6em}
+.digest .artband{margin:1em 0 .4em}
+.digest .artband .art{background:var(--white)}
+.scene.alt .digest .artband .art{background:var(--mist)}
+
+/* ===== v21: breathing room and a bit of life in the artwork ===== */
+.fig .artwrap,.fig .jars{margin-top:1.5em}
+.fig .card{margin-top:1.4em}
+.choices{margin-bottom:.3em}
+.hint{margin-bottom:0}
+.verdicts{margin-top:.6em}
+.jars{margin-bottom:.4em}
+
+/* ---------- motion ---------- */
+/* every keyframe gets an explicit from-state so nothing depends on
+   the renderer inferring a starting value from an SVG attribute */
+
+@keyframes dashRun{from{stroke-dashoffset:0}to{stroke-dashoffset:-44}}
+.leapArc{stroke-dasharray:12 10;animation:dashRun 1.6s linear infinite}
+
+@keyframes ride{from{offset-distance:0%}to{offset-distance:100%}}
+.rider{offset-path:path("M255,144 q88,-78 172,0");offset-distance:0%;
+  animation:ride 3.2s var(--ease) infinite}
+.curveRider{offset-path:path("M76,242 C104,242 126,92 162,92 C206,92 220,162 268,190 C334,218 456,228 646,230");
+  offset-distance:0%;animation:ride 7s linear infinite}
+
+@keyframes pulseDot{from{transform:scale(1);opacity:1}
+  50%{transform:scale(1.55);opacity:.55}to{transform:scale(1);opacity:1}}
+.pulseDot{transform-box:fill-box;transform-origin:center;animation:pulseDot 2.2s var(--ease) infinite}
+.pulseDot.late{animation-delay:1.1s}
+
+@keyframes nudge{from{transform:translate(0,0)}
+  58%{transform:translate(0,0)}
+  76%{transform:translate(-16px,3px)}
+  92%{transform:translate(-3px,0)}
+  to{transform:translate(0,0)}}
+.rejected{animation:nudge 3.6s var(--ease) infinite}
+
+@keyframes turn{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.seal{transform-box:fill-box;transform-origin:center;animation:turn 11s linear infinite}
+
+@keyframes bar1{from{transform:scaleY(1)}50%{transform:scaleY(1.34)}to{transform:scaleY(1)}}
+@keyframes bar2{from{transform:scaleY(1)}50%{transform:scaleY(.7)}to{transform:scaleY(1)}}
+.cbar{transform-box:fill-box;transform-origin:bottom center}
+.cbar.b1{animation:bar1 3.2s var(--ease) infinite}
+.cbar.b2{animation:bar2 3.8s var(--ease) infinite}
+.cbar.b3{animation:bar1 4.4s var(--ease) infinite .4s}
+
+@keyframes qpulse{from{opacity:.4;transform:translateY(2px) scale(.94)}
+  50%{opacity:1;transform:translateY(-7px) scale(1.06)}
+  to{opacity:.4;transform:translateY(2px) scale(.94)}}
+.hero-art .qm{transform-box:fill-box;transform-origin:center;animation:qpulse 2.6s var(--ease) infinite}
+
+@keyframes hesitate{from{transform:translateX(0)}
+  40%{transform:translateX(-13px)}60%{transform:translateX(-13px)}to{transform:translateX(0)}}
+.hero-art .walker{animation:hesitate 3.8s var(--ease) infinite}
+
+@keyframes idle{from{transform:translateY(0)}50%{transform:translateY(-2.5px)}to{transform:translateY(0)}}
+.carIdle{animation:idle 1.4s var(--ease) infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
+.wheel{transform-box:fill-box;transform-origin:center;animation:spin 3s linear infinite}
+@keyframes puff{from{transform:translate(0,0) scale(.5);opacity:0}
+  25%{opacity:.7}to{transform:translate(26px,-26px) scale(1.7);opacity:0}}
+.puff{animation:puff 2.6s var(--ease) infinite}
+.puff.two{animation-delay:.9s}
+.puff.three{animation-delay:1.7s}
+@keyframes lampPulse{from{opacity:.35}50%{opacity:1}to{opacity:.35}}
+.lamp{animation:lampPulse 2.4s var(--ease) infinite}
+@keyframes linkRun{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
+.linkLine{stroke-dasharray:6 8;animation:linkRun 1.3s linear infinite}
+
+@keyframes drift1{from{transform:translate(0,0) scale(1)}
+  50%{transform:translate(13px,-9px) scale(1.14)}to{transform:translate(0,0) scale(1)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-14px,8px) scale(.86)}to{transform:translate(0,0) scale(1)}}
+.fog1{transform-box:fill-box;transform-origin:center;animation:drift1 6s var(--ease) infinite}
+.fog2{transform-box:fill-box;transform-origin:center;animation:drift2 7.5s var(--ease) infinite}
+.fog3{transform-box:fill-box;transform-origin:center;animation:drift1 9s var(--ease) infinite 1.2s}
+@keyframes qfade{from{opacity:.8;transform:translateY(0)}
+  50%{opacity:.2;transform:translateY(-5px)}to{opacity:.8;transform:translateY(0)}}
+.jq{transform-box:fill-box;transform-origin:center;animation:qfade 4s var(--ease) infinite}
+.jq.q2{animation-duration:5.2s;animation-delay:.6s}
+.jq.q3{animation-duration:6.4s;animation-delay:1.2s}
+@keyframes twinkle{from{opacity:.85}50%{opacity:.35}to{opacity:.85}}
+.halo{animation:twinkle 4.5s var(--ease) infinite}
+.halo.h2{animation-duration:5.6s;animation-delay:.7s}
+.halo.h3{animation-duration:6.8s;animation-delay:1.4s}
+
+/* ---------- curve: opacity on the wrapper, dashes on the path ---------- */
+.afterWrap{opacity:0;animation:cAfter 18s infinite alternate var(--ease)}
+@keyframes curveDash{from{stroke-dashoffset:0}to{stroke-dashoffset:-36}}
+.c-after{animation:curveDash 1.9s linear infinite}
+
+/* ---------- the desk scene ---------- */
+@keyframes nod{from{transform:rotate(0deg)}30%{transform:rotate(7deg)}
+  60%{transform:rotate(-3deg)}to{transform:rotate(0deg)}}
+.nod{transform-box:fill-box;transform-origin:bottom center;animation:nod 3.4s var(--ease) infinite}
+.nod.b{animation-duration:4.3s;animation-delay:1.1s}
+@keyframes leaf{from{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}to{transform:rotate(-2.5deg)}}
+.doc{transform-box:fill-box;transform-origin:center;animation:leaf 4.6s var(--ease) infinite}
+
+/* ---------- bench: an elegant reveal instead of a snap ---------- */
+.verdicts{display:grid;margin-top:1.3em;padding-top:1.1em;border-top:4px solid var(--teal)}
+.vd{display:block;grid-area:1/1;opacity:0;transform:translateY(14px);pointer-events:none;
+  margin-top:0;padding-top:0;border-top-width:0;
+  transition:opacity .45s var(--ease),transform .5s var(--ease)}
+.vd.vd-idle{opacity:1;transform:none}
+#b1:checked ~ .verdicts .vd-idle,#b2:checked ~ .verdicts .vd-idle,
+#b3:checked ~ .verdicts .vd-idle,#b4:checked ~ .verdicts .vd-idle{opacity:0}
+#b1:checked ~ .verdicts .v1,#b2:checked ~ .verdicts .v2,
+#b3:checked ~ .verdicts .v3,#b4:checked ~ .verdicts .v4{
+  opacity:1;transform:none;pointer-events:auto}
+.vd h5,.vd .two{transition:opacity .45s .12s var(--ease),transform .45s .12s var(--ease)}
+.vd h5,.vd .two{opacity:0;transform:translateY(8px)}
+.vd.vd-idle h5,.vd.vd-idle .two{opacity:1;transform:none}
+#b1:checked ~ .verdicts .v1 h5,#b1:checked ~ .verdicts .v1 .two,
+#b2:checked ~ .verdicts .v2 h5,#b2:checked ~ .verdicts .v2 .two,
+#b3:checked ~ .verdicts .v3 h5,#b3:checked ~ .verdicts .v3 .two,
+#b4:checked ~ .verdicts .v4 h5,#b4:checked ~ .verdicts .v4 .two{opacity:1;transform:none}
+.choices label{padding-left:1.05em}
+.choices label::before{content:"";display:block;flex:0 0 auto;width:0;height:9px;margin-right:0;
+  background:var(--teal);border-radius:2px;transition:width .25s var(--ease),margin-right .25s var(--ease)}
+#b1:checked ~ .choices label[for=b1]::before,#b2:checked ~ .choices label[for=b2]::before,
+#b3:checked ~ .choices label[for=b3]::before,#b4:checked ~ .choices label[for=b4]::before,
+#j1:checked ~ .choices label[for=j1]::before,#j2:checked ~ .choices label[for=j2]::before{
+  width:9px;margin-right:.6em}
+
+/* ---------- policy list: each clause slides in from the right as it scrolls up ---------- */
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(64px)}
+  to{opacity:1;transform:translateX(0)}}
+@supports (animation-timeline: view()){
+  .policy li{
+    opacity:0;
+    animation:slideInRight linear both;
+    animation-timeline:view();
+    animation-range:cover 10% cover 40%;}
+  .policy li:nth-child(2){animation-range:cover 12% cover 42%}
+  .policy li:nth-child(3){animation-range:cover 14% cover 44%}
+  .policy li:nth-child(4){animation-range:cover 16% cover 46%}
+  .policy li:nth-child(5){animation-range:cover 18% cover 48%}
+  .policy li:nth-child(6){animation-range:cover 20% cover 50%}
+  .policy li:nth-child(7){animation-range:cover 22% cover 52%}
+  .policy li:nth-child(8){animation-range:cover 24% cover 54%}
+  .policy li:nth-child(9){animation-range:cover 26% cover 56%}
+}
+@media (prefers-reduced-motion:reduce){
+  .policy li{opacity:1 !important;animation:none !important;transform:none !important}
+}
+
+/* applicant checklist, mirrored from the policy block */
+.policy.applicant{border-color:var(--maroon)}
+.policy.applicant .policy-head{background:var(--maroon)}
+.policy.applicant li b{color:var(--navy)}
+@supports (animation-timeline: view()){
+  .policy.applicant li{opacity:0;animation:slideInRight linear both;
+    animation-timeline:view();animation-range:cover 10% cover 40%}
+  .policy.applicant li:nth-child(2){animation-range:cover 13% cover 43%}
+  .policy.applicant li:nth-child(3){animation-range:cover 16% cover 46%}
+  .policy.applicant li:nth-child(4){animation-range:cover 19% cover 49%}
+  .policy.applicant li:nth-child(5){animation-range:cover 22% cover 52%}
+  .policy.applicant li:nth-child(6){animation-range:cover 25% cover 55%}
+}
+.closer{padding:clamp(32px,5vh,68px) 0;background:var(--mist);border-bottom:1px solid var(--rule)}
+.closer .inner{max-width:62ch;border-left:5px solid var(--maroon);padding-left:clamp(16px,2.4vw,28px)}
+.closer .lab{color:var(--maroon);display:block;margin-bottom:1em}
+.closer p{font-size:1.05em}
+.closer .kicker{font-family:var(--head);font-weight:700;color:var(--maroon);
+  font-size:clamp(1.15rem,2.2vw,1.6rem);line-height:1.16;letter-spacing:-.02em;margin-bottom:.8em}
+
+/* Table 1, rebuilt as a card under the curve */
+.spec{display:grid;border:1px solid var(--rule);margin-top:.4em}
+.spec .row{display:grid;grid-template-columns:minmax(140px,25%) 1fr;border-bottom:1px solid var(--rule)}
+.spec .row:last-child{border-bottom:0}
+.spec dt{font-family:var(--head);font-weight:700;font-size:.6rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--navy);background:var(--mist);padding:.8em 1em;margin:0}
+.scene.alt .spec dt{background:var(--white)}
+.spec dd{margin:0;padding:.8em 1em;font-size:.95em}
+.spec .row.gov dt{background:var(--teal);color:var(--navy)}
+.spec .row.gov dd{background:rgba(49,220,197,.16);font-weight:700;color:var(--maroon)}
+.zonehead{font-family:var(--head);font-weight:700;font-size:clamp(1.02rem,1.9vw,1.36rem);
+  line-height:1.16;letter-spacing:-.018em;color:var(--maroon);margin:0 0 .2em}
+.zonesub{color:var(--navy);font-family:var(--head);font-weight:700;font-size:.6rem;
+  letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:.45em}
+@keyframes sameify{from{transform:translateY(0) rotate(-4deg)}
+  50%{transform:translateY(0) rotate(0deg)}to{transform:translateY(0) rotate(-4deg)}}
+.doc1{transform-box:fill-box;transform-origin:bottom center;animation:sameify 5s var(--ease) infinite}
+.doc2{transform-box:fill-box;transform-origin:bottom center;animation:sameify 5s var(--ease) infinite .5s}
+.doc3{transform-box:fill-box;transform-origin:bottom center;animation:sameify 5s var(--ease) infinite 1s}
+
+.artband.afterall{margin-top:clamp(24px,3.6vh,42px)}
+.figlead{font-family:var(--head);font-weight:700;font-size:.74rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--navy);margin:0 0 .8em}
+.afterword{max-width:66ch;margin-top:clamp(18px,2.6vh,30px)}
+
+/* ---------- the jar game ---------- */
+.modebar{display:flex;flex-wrap:wrap;border:1px solid var(--maroon);width:fit-content;margin-bottom:1em}
+.modebtn{font-family:var(--head);font-weight:700;font-size:.74rem;letter-spacing:.04em;
+  background:var(--white);color:var(--maroon);border:0;border-right:1px solid var(--maroon);
+  padding:.75em 1.05em;cursor:pointer;
+  transition:background .45s var(--ease),color .45s var(--ease)}
+.modebtn:last-child{border-right:0}
+.modebtn:hover{background:var(--mist)}
+.modebtn.on{background:var(--maroon);color:var(--white)}
+.modebtn:focus-visible{outline:3px solid var(--teal);outline-offset:-4px}
+
+.jarstage{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);
+  gap:clamp(14px,2.4vw,32px);align-items:center;
+  background:var(--mist);padding:clamp(10px,1.8vw,22px);
+  transition:background .7s var(--ease)}
+.scene.alt .jarstage{background:var(--white)}
+#jarTool.unc .jarstage{background:#efe6ea}
+.jarcanvaswrap{min-width:0}
+#jarCanvas{display:block;width:100%;height:auto;touch-action:none;cursor:grab}
+#jarCanvas.dragging{cursor:grabbing}
+
+.pblocks{display:grid;gap:clamp(10px,1.6vh,18px);
+  transition:filter .7s var(--ease),opacity .7s var(--ease)}
+#jarTool.unc .pblocks{filter:blur(9px);opacity:.75;pointer-events:none;user-select:none}
+.pblock{border-left:5px solid var(--maroon);padding-left:.85em}
+.pblock.blue{border-left-color:var(--navy)}
+.plabel{display:block;font-family:var(--head);font-weight:700;font-size:.58rem;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.15em}
+.pnum{display:block;font-family:var(--head);font-weight:700;
+  font-size:clamp(2.6rem,6vw,3.9rem);line-height:.92;letter-spacing:-.045em;color:var(--maroon)}
+.pblock.blue .pnum{color:var(--navy)}
+.pform{display:block;margin-top:.25em;font-family:var(--head);font-weight:700;
+  font-size:.82rem;color:var(--muted);letter-spacing:.01em}
+.sideline{margin-top:1em;font-size:.9em;color:var(--navy);font-family:var(--head);font-weight:700;
+  transition:opacity .5s var(--ease)}
+
+.drawrow{display:flex;flex-wrap:wrap;gap:.5em;margin-top:1.1em}
+.drawbtn{font-family:var(--head);font-weight:700;font-size:.84rem;border:1.5px solid transparent;
+  border-radius:4px;padding:.7em 1.05em;cursor:pointer;color:var(--white);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease)}
+.drawbtn:hover{transform:translateY(-2px);box-shadow:0 8px 16px -8px rgba(43,37,48,.55)}
+.drawbtn:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.drawbtn.red{background:var(--maroon)}
+.drawbtn.blue{background:var(--navy)}
+.drawbtn.ghost{background:transparent;color:var(--navy);border-color:var(--sky)}
+
+.vwrap{margin-top:1.2em;border-left:5px solid var(--teal);padding-left:.85em;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.vwrap.in{opacity:1;transform:none}
+.vbig{display:block;font-family:var(--head);font-weight:700;
+  font-size:clamp(2rem,4.6vw,3rem);line-height:.95;letter-spacing:-.04em;color:var(--navy);
+  transition:color .4s var(--ease)}
+.vbig.right{color:var(--teal)}
+.vbig.wrong{color:var(--maroon)}
+.vsub{display:block;margin-top:.3em;font-family:var(--head);font-weight:700;font-size:.85rem;color:var(--muted)}
+.vlog{display:block;margin-top:.6em;font-size:.82rem;color:var(--muted);font-weight:400;line-height:1.5}
+
+.jarpanels{margin-top:1.4em}
+.panel.jp{position:static;opacity:1;animation:none}
+@media (max-width:720px){
+  .jarstage{grid-template-columns:1fr}
+  .pnum{font-size:3rem}
+}
+
+/* bench: the option is the button */
+.choices.bench{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7em}
+.choices.bench label{max-width:none;flex-direction:column;align-items:flex-start;text-align:left;
+  gap:.3em;padding:.85em 1em .9em 1.05em;line-height:1.28}
+.choices.bench label b{font-size:.62rem;letter-spacing:.2em;color:var(--navy)}
+.choices.bench label span{font-size:.95rem;font-weight:700}
+.choices.bench label::before{height:0}
+#b1:checked ~ .choices label[for=b1] b,#b2:checked ~ .choices label[for=b2] b,
+#b3:checked ~ .choices label[for=b3] b,#b4:checked ~ .choices label[for=b4] b{color:var(--teal)}
+
+/* the reviewer game */
+.reviewgame{background:var(--mist);padding:clamp(14px,2.2vw,26px)}
+.scene.alt .reviewgame{background:var(--white)}
+.rg-round{transition:opacity .6s var(--ease)}
+.rg-round.locked{opacity:.32;pointer-events:none}
+.rg-ask{font-family:var(--head);font-weight:700;font-size:clamp(.98rem,1.6vw,1.12rem);
+  color:var(--navy);margin:0 0 .9em}
+.rg-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:.7em}
+.rgbox{position:relative;overflow:hidden;background:var(--white);border:2px solid var(--sky);
+  border-radius:5px;padding:.9em .7em 1em;cursor:pointer;text-align:left;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+.scene.alt .rgbox{background:var(--mist)}
+.rgbox:hover{transform:translateY(-3px);box-shadow:0 10px 20px -12px rgba(43,37,48,.55)}
+.rgbox:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.rgbox .tag{display:block;font-family:var(--head);font-weight:700;font-size:.6rem;
+  letter-spacing:.18em;color:var(--navy);margin-bottom:.55em}
+.rgbox .ln{display:block;height:5px;border-radius:3px;background:var(--navy);opacity:.28;margin-bottom:.4em}
+.rgbox.sel{border-color:var(--maroon)}
+.rgbox.modal-pick{border-color:var(--teal);box-shadow:0 0 0 3px rgba(49,220,197,.35)}
+.rgbox.modal-pick::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,rgba(255,255,255,0) 35%,rgba(255,255,255,.85) 50%,rgba(255,255,255,0) 65%);
+  transform:translateX(-120%);animation:shine 2.4s var(--ease) infinite}
+@keyframes shine{from{transform:translateX(-120%)}60%{transform:translateX(120%)}to{transform:translateX(120%)}}
+.rg-help{display:flex;flex-wrap:wrap;gap:.5em;margin-top:1em}
+.rg-stream{min-height:104px;margin-top:1em;padding:.85em 1em;background:var(--white);
+  border-left:4px solid var(--navy);font-size:.93em}
+.scene.alt .rg-stream{background:var(--mist)}
+.rg-stream .who{display:block;font-family:var(--head);font-weight:700;font-size:.58rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.4em}
+.rg-stream.ai{border-left-color:var(--teal)}
+.rg-stream .cursor{display:inline-block;width:8px;height:1em;background:var(--navy);
+  vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.rg-feedback{min-height:92px;margin-top:1em;font-size:.95em}
+.rg-feedback b{font-family:var(--head);color:var(--maroon)}
+@media (prefers-reduced-motion:reduce){
+  .rgbox.modal-pick::after,.rg-stream .cursor{animation:none}
+}
+
+/* round two: boxes that fall onto a curve */
+.rg-curvestage{position:relative;height:156px;margin-top:.2em;
+  transition:height .85s var(--ease)}
+.rg-curvestage.spread{height:318px}
+.rg-curve{position:absolute;inset:0;width:100%;height:100%;opacity:0;
+  transition:opacity .8s var(--ease)}
+.rg-curvestage.spread .rg-curve{opacity:1}
+.rg-curvestage .rgbox{position:absolute;width:17.5%;min-width:82px;
+  transition:left .9s var(--ease),top .9s var(--ease),transform .3s var(--ease),
+             background .7s var(--ease),border-color .7s var(--ease),box-shadow .3s var(--ease)}
+.rg-curvestage .rgbox:hover{transform:translateY(-4px)}
+.rg-axis{display:flex;justify-content:space-between;margin-top:.3em;
+  font-family:var(--head);font-weight:400;font-style:italic;font-size:.8rem;color:var(--muted);
+  opacity:0;transition:opacity .8s var(--ease)}
+.rg-curvestage.spread ~ .rg-axis{opacity:1}
+
+/* money and attention */
+.meter2{margin-top:.9em;max-width:52ch}
+.m2row{display:grid;grid-template-columns:5.6em 1fr 3em;gap:.7em;align-items:center;margin-bottom:.45em}
+.m2row span{font-family:var(--head);font-weight:700;font-size:.58rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+.m2row .lane2{background:var(--white);border:1px solid var(--rule);height:15px;display:block}
+.scene.alt .m2row .lane2{background:var(--mist)}
+.m2row i{display:block;height:100%;width:0;background:var(--maroon);
+  transition:width .9s var(--ease)}
+.m2row.att i{background:var(--navy)}
+.m2row b{font-family:var(--head);font-weight:700;font-size:.8rem;color:var(--navy);text-align:right}
+.m2cap{margin-top:.35em;font-size:.8rem;color:var(--muted)}
+.rgbox.unfinished{border-style:dashed}
+.rgbox .strike{position:relative}
+.rgbox .strike::after{content:"";position:absolute;left:0;right:22%;top:50%;height:2px;
+  background:var(--maroon);opacity:.45}
+
+/* round one boxes hold real text now */
+.rgbox .bodytext{display:block;font-family:var(--body);font-weight:400;font-size:.72rem;
+  line-height:1.4;color:var(--text);opacity:.8}
+.rgbox.comic .bodytext{font-family:"Comic Sans MS","Chalkboard SE","Segoe Print",cursive;
+  font-size:.76rem;color:var(--maroon)}
+.rgbox.stained::before{content:"";position:absolute;right:-14px;top:-14px;width:58px;height:58px;
+  border-radius:50%;border:7px solid rgba(118,59,86,.22);
+  box-shadow:inset 0 0 0 4px rgba(118,59,86,.08)}
+.rgbox.stained::after{content:"";position:absolute;right:6px;top:16px;width:22px;height:16px;
+  border-radius:50%;background:rgba(118,59,86,.14)}
+.rgbox .madeby{position:absolute;right:.55em;bottom:.4em;font-family:var(--head);font-weight:700;
+  font-size:.5rem;letter-spacing:.09em;color:var(--muted);opacity:.7}
+.rg-curvestage .rgbox{padding-bottom:1.5em}
+.rg-meters{margin-top:.8em;min-height:0}
+.rg-meters:empty{margin-top:0}
+
+/* the screening game */
+.foldergame{background:var(--mist);padding:clamp(14px,2.2vw,26px);margin-bottom:clamp(20px,3vh,34px)}
+.scene.alt .foldergame{background:var(--white)}
+.fg-guess{display:flex;flex-wrap:wrap;gap:.5em;margin-bottom:1.2em}
+.fg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1em}
+.fg-card{background:var(--white);border:2px solid var(--rule);border-radius:5px;
+  padding:1em 1.1em 1.1em;transition:border-color .5s var(--ease),transform .4s var(--ease)}
+.scene.alt .fg-card{background:var(--mist)}
+.fg-card.won{border-color:var(--maroon)}
+.fg-card h6{font-family:var(--head);font-weight:700;font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--navy);margin:0 0 .2em}
+.fg-sub{font-family:var(--head);font-weight:700;font-size:.98rem;color:var(--maroon);margin:0 0 .8em}
+.fg-list{list-style:none;margin:0;padding:0}
+.fg-list li{display:grid;grid-template-columns:1.5em 1fr;gap:.5em;align-items:start;
+  font-size:.88em;margin-bottom:.5em;opacity:0;transform:translateX(12px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.fg-list li.in{opacity:1;transform:none}
+.fg-list li i{font-style:normal;font-family:var(--head);font-weight:700;font-size:.9rem;line-height:1.35}
+.fg-list li.sees i{color:var(--teal)}
+.fg-list li.blind i{color:var(--maroon)}
+.fg-list li.blind span{color:var(--muted)}
+.fg-score{margin-top:.9em;padding-top:.7em;border-top:1px solid var(--rule);
+  display:flex;align-items:baseline;gap:.6em}
+.fg-score b{font-family:var(--head);font-weight:700;font-size:2.4rem;line-height:1;
+  letter-spacing:-.04em;color:var(--maroon)}
+.fg-score span{font-family:var(--head);font-weight:700;font-size:.58rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+
+/* playing it forward */
+.rg-fwd{display:flex;flex-wrap:wrap;align-items:center;gap:.7em 1em;margin-top:1.1em}
+.rg-fwdnote{font-size:.8rem;color:var(--muted);max-width:44ch}
+.rg-outcomes{display:grid;gap:.4em;margin-top:1em}
+.rg-outcomes:empty{margin-top:0}
+.oc{display:grid;grid-template-columns:1.6em minmax(80px,1fr) 3.6em 1fr;gap:.7em;align-items:center;
+  font-size:.86em;opacity:0;transform:translateX(10px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.oc.in{opacity:1;transform:none}
+.oc.you{background:rgba(49,220,197,.16);border-radius:4px;padding:.3em .45em;margin:-.3em -.45em}
+.oc .octag{font-family:var(--head);font-weight:700;font-size:.78rem;color:var(--navy)}
+.oc .oclane{background:var(--white);border:1px solid var(--rule);height:13px;display:block}
+.scene.alt .oc .oclane{background:var(--mist)}
+.oc .oclane i{display:block;height:100%;width:0;transition:width .7s var(--ease)}
+.oc .ocx{font-family:var(--head);font-weight:700;font-size:.9rem;text-align:right}
+.oc .octxt{color:var(--muted)}
+.oc.dead .ocx{color:var(--maroon)} .oc.dead .oclane i{background:var(--maroon)}
+.oc.flat .ocx{color:var(--navy)}   .oc.flat .oclane i{background:var(--navy)}
+.oc.big  .ocx{color:#1f9e8c}       .oc.big .oclane i{background:var(--teal)}
+.rg-tally{margin-top:.9em;font-size:.86rem;color:var(--muted);line-height:1.6}
+.rg-tally b{font-family:var(--head);color:var(--navy)}
+@media (max-width:620px){ .oc{grid-template-columns:1.6em 1fr 3.4em;} .oc .octxt{grid-column:1/-1} }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="wrap">
+    <span class="lab">Venture.Buzz</span>
+    <span class="lab alt">Research Storyteller</span>
+    <span class="lab alt">Journal of Business Venturing Insights</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="lab eyebrow">Where I keep starting from</span>
+      <h1>Nobody was getting in <em>a stranger's car</em></h1>
+      <p class="hero-lede">Before ride-hailing existed, that was the objection to it, and it was a good one. Your parents told you not to. Ride-hailing needed a social rule to flip before it could work, and nothing written up to that point said it was about to. Hand that idea to a machine and ask it to score the odds, and it calls the thing <b>far-fetched</b>: right about the record, wrong about what came next. Ask that same machine to help you think the idea through instead, and you get something else entirely, which turns out to be most of the story.</p>
+      <span class="src">The car at the curb was thought up on a call with the authors, not taken from the paper. Captions below mark the paper's own examples.</span>
+      <div class="hero-stand">
+        <p>Founders and the people who fund them now ask tools like ChatGPT and Claude what a new business idea is worth.</p>
+        <p><b>“AI-mediated plausibility regimes,”</b> a theory paper in this journal by Farsan Madjdi and Bernd Wurth of the University of Glasgow, pins down what that answer measures and how much weight it should carry.</p>
+        <p>I got the authors on a call. Nine ideas came out of it, each a section below.</p>
+      </div>
+    </div>
+    <svg class="hero-art" viewBox="0 0 440 250" role="img"
+         aria-label="A person on a curb hesitating beside an unmarked car waiting at the roadside">
+      <line class="ln faint" x1="14" y1="212" x2="426" y2="212"/>
+      <line class="ln faint" x1="24" y1="226" x2="76" y2="226" stroke-dasharray="4 14"/>
+      <line class="ln faint" x1="120" y1="226" x2="172" y2="226" stroke-dasharray="4 14"/>
+
+      <g class="walker">
+        <circle class="ln" cx="58" cy="128" r="12"/>
+        <path class="ln" d="M58,141 v40"/>
+        <path class="ln" d="M58,181 l-11,29 M58,181 l12,29"/>
+        <path class="ln" d="M58,152 l17,9"/>
+        <rect class="accent" x="72" y="152" width="10" height="15" rx="2"/>
+        <text class="qm" x="58" y="104" text-anchor="middle">?</text>
+      </g>
+
+      <path class="ln linkLine" d="M96,158 q28,-16 56,0"/>
+
+      <g class="carIdle">
+        <path class="ln" d="M168,188 v-24 q0,-14 14,-17 l18,-26 q4,-6 12,-6 h58 q8,0 13,6 l20,26 q16,3 16,17 v24 z"/>
+        <path class="ln" d="M212,141 h26 v-24 h-16 z"/>
+        <path class="ln" d="M250,141 h34 l-16,-24 h-18 z"/>
+        <circle class="accent lamp" cx="172" cy="170" r="6"/>
+        <path class="ln" d="M330,166 h12"/>
+        <g class="wheel">
+          <circle class="ln" cx="204" cy="190" r="18"/>
+          <path class="ln" d="M204,176 v28 M190,190 h28"/>
+          <circle class="accent" cx="204" cy="190" r="5"/>
+        </g>
+        <g class="wheel">
+          <circle class="ln" cx="294" cy="190" r="18"/>
+          <path class="ln" d="M294,176 v28 M280,190 h28"/>
+          <circle class="accent" cx="294" cy="190" r="5"/>
+        </g>
+      </g>
+      <g>
+        <circle class="puff" cx="350" cy="182" r="6" fill="var(--sky)" opacity="0"/>
+        <circle class="puff two" cx="350" cy="182" r="5" fill="var(--sky)" opacity="0"/>
+        <circle class="puff three" cx="350" cy="182" r="7" fill="var(--sky)" opacity="0"/>
+      </g>
+
+      <text class="cap" x="220" y="244" text-anchor="middle">an ordinary car, a stranger driving</text>
+    </svg>
+  </div>
+</header>
+
+<section class="origin">
+  <div class="wrap">
+    <div class="inner">
+      <span class="lab">How I ended up here</span>
+      <p>My company asked me to get up to speed on generative AI. I had a background in NLP and machine learning, studied properly anyway, and came out with a certification. Now I build AI chat prototypes at work and teach workshops at the incubator where I keep an office.</p>
+      <p>I was also getting uneasy about how often I reached for it. Not for code. For thinking. Framing an idea. Pressure-testing it. Pitching it. I run a venture of my own, and I'd stopped having the awkward first draft of a thought, because something was always there to tidy it up first. Was that making me sharper, or just making me sound like everyone else?</p>
+      <p>Then I read this paper. Its authors came into the university from industry, and one works in simulation and system dynamics, where I came from.</p>
+      <p>So I got them on a call, with two questions of my own.</p>
+      <p><strong>One.</strong> I'm chasing non-dilutive funding, and I use these tools to sharpen the applications. Is that helping my odds or quietly hurting them?</p>
+      <p><strong>Two.</strong> I use them while I'm thinking, too. Is that making me better at finding something genuinely new, or walking me back toward whatever everyone already believes?</p>
+      <p>Both got answered, mostly sideways. The answers run through what follows, and I collect them at the end.</p>
+      <nav class="map" aria-label="The nine sections">
+        <span class="lab">The nine, in order</span>
+        <ol>
+          <li><a href="#s1">Two files, one desk</a></li>
+          <li><a href="#s2">What's actually being measured</a></li>
+          <li><a href="#s3">Two kinds of not knowing</a></li>
+          <li><a href="#s4">The picture, and the four cases</a></li>
+          <li><a href="#s5">The obvious objection</a></li>
+          <li><a href="#s6">Your turn to pick one</a></li>
+          <li><a href="#s7">Advice, or a locked door</a></li>
+          <li><a href="#s8">The hard one</a></li>
+          <li><a href="#s9">Monday morning</a></li>
+        </ol>
+      </nav>
+      <p>Read this one down the middle. Two applications sitting on the same desk, one a machine can make sense of and one it can't.</p>
+    </div>
+  </div>
+</section>
+
+<div class="colbar">
+  <div class="wrap">
+    <div class="side"><span class="dot"></span><span class="lab">The one it can read</span></div>
+    <div class="side"><span class="dot"></span><span class="lab">The one it can't</span></div>
+  </div>
+</div>
+
+<main>
+
+<!-- 1 -->
+<section class="scene" id="s1">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">One — two files, one desk</span>
+      <h2 class="scene-title">One of these is easy to read. That's not the same as being good.</h2>
+      <p class="scene-lede">I made both of these up to show you the shape of the problem. They're the two folders every screening committee has seen.</p>
+    </div>
+
+    <div class="foldergame" id="fgGame">
+      <p class="figlead">Two applications, one screening tool</p>
+      <p class="rg-ask">Before anyone opens them: which one will the screen prefer?</p>
+      <div class="fg-guess" id="fgGuess">
+        <button type="button" class="drawbtn blue" data-g="1">The familiar one</button>
+        <button type="button" class="drawbtn red" data-g="2">The unfamiliar one</button>
+      </div>
+      <div class="fg-grid">
+        <div class="fg-card" id="fgC1">
+          <h6>Application one</h6>
+          <p class="fg-sub">Subscription analytics, fourth into the category</p>
+          <ul class="fg-list" id="fgL1"></ul>
+          <div class="fg-score"><b id="fgS1">—</b><span>screen score</span></div>
+        </div>
+        <div class="fg-card" id="fgC2">
+          <h6>Application two</h6>
+          <p class="fg-sub">A process with no category to sit in</p>
+          <ul class="fg-list" id="fgL2"></ul>
+          <div class="fg-score"><b id="fgS2">—</b><span>screen score</span></div>
+        </div>
+      </div>
+      <div class="rg-feedback" id="fgFb"></div>
+    </div>
+
+    <div class="compare">
+      <div class="axis-row"><span>What's in the folder</span></div>
+      <div class="cell cell-a">
+        <h4>Familiar, and it shows its work</h4>
+        <p>A subscription analytics tool in a category that already has four players. Companies it can point at that sold well. A market size with a footnote. Numbers that look like other numbers that worked out.</p>
+        <p>Everything a scoring tool wants, in the format it wants it.</p>
+      </div>
+      <div class="cell cell-b">
+        <h4>Protected, and completely unfamiliar</h4>
+        <p>A new process with a granted patent and something they know how to do that nobody else does. A young team, well trained, already backed by people who know them well.</p>
+        <p>There's nothing to compare it to. The category doesn't exist yet, so nothing anybody has ever written describes what happens next.</p>
+      </div>
+
+      <div class="axis-row"><span>What comes back from the score</span></div>
+      <div class="cell cell-a">
+        <h4>Looks great</h4>
+        <p>High confidence. Which makes sense, because a machine that learned from a million business plans is going to feel good about a business plan that looks like a million business plans.</p>
+      </div>
+      <div class="cell cell-b">
+        <h4>Looks risky</h4>
+        <p>Low confidence, flagged. Not because there's anything weak in the folder, but because the folder has no relatives. Hard to recognize gets read as unlikely to work.</p>
+      </div>
+    </div>
+
+    <div class="digest">
+      <span class="lab">The short version</span>
+      <h4>Ask it to judge, and what comes back is the past's opinion</h4>
+      <p>Authors Farsan Madjdi and Bernd Wurth argue that a system trained on history hands out a kind of vote of confidence. How much that vote matters depends on whether it sits beside a decision or quietly becomes one. Their name for the setup, tools plus institutions plus habits, is a <strong>plausibility regime</strong>.</p>
+      <p>My everyday version, not the paper's: a mortgage application. The bank isn't asking whether you'll pay it back. It's asking how closely you resemble people who did. Someone self-employed with a better income and a lumpier record scores worse, and everyone knows the score is a proxy, right up until it becomes the decision.</p>
+      <p>One property, two opposite mistakes, depending on the job you hand it. Used to invent, it can talk up ideas that merely sound right. Used to screen, it can talk down anything it hasn't seen. The authors call these risks, not certainties, and the tool isn't the villain.</p>
+      <p>Farsan kept returning to what that leaves the founder holding.</p>
+      <blockquote>… entrepreneurial judgment is becoming very important, precisely because the relevant evidence does not yet exist.<cite>Farsan Madjdi, in conversation</cite></blockquote>
+    </div>
+
+    <div class="digest caution">
+      <span class="lab">The first thing I asked them</span>
+      <h4>Some questions arrive before the evidence can</h4>
+      <p>I pushed them on this first, because it's the first thing anyone asks about the paper. Wurth walked through why the usual method doesn't reach.</p>
+      <blockquote>… the literature on experiments is very thin, and just because it's difficult to do.<cite>Bernd Wurth, in conversation</cite></blockquote>
+      <p style="margin-top:.9em">The reason is structural. You can't rerun a funding round, and no two applications, committees or years line up cleanly enough to compare. Section three gets into why, with jars.</p>
+      <p style="margin-top:.9em">A familiar shape if you've worked on any big messy system. Nobody runs a controlled trial on a city's transport network either. You build the argument, look for the traces it would leave, and go carefully. That's what this paper does.</p>
+      <p>One thing to keep straight: when the paper says the machine gets it wrong, it means it treated <em>I don't recognize this</em> as evidence of <em>this won't work</em>. A claim about the reasoning, not the outcome.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="scene alt" id="s2">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Two — what's actually being measured</span>
+      <h2 class="scene-title">It's answering a different question than the one you asked.</h2>
+      <p class="scene-lede">You want to know if this will work. It's telling you how much this looks like things that worked. For a familiar venture those two are close enough to be useful. The further you get from the familiar, the further apart they drift.</p>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h4>The shelf it learned from</h4><span class="lab">Try all three</span></div>
+      <div class="tool-body">
+        <div class="fig">
+          <input class="sr" type="radio" name="pm" id="m1">
+          <input class="sr" type="radio" name="pm" id="m2">
+          <input class="sr" type="radio" name="pm" id="m3">
+
+          <p class="poke">Click an idea</p>
+          <div class="ctl">
+            <span class="ctl-lab">Hand it your idea</span>
+            <label for="m1">Another food delivery app</label>
+            <label for="m2">Delivery, but weekly farm boxes</label>
+            <label for="m3">Sleep in a stranger's spare room</label>
+          </div>
+          <p class="hint">Cycling on its own until you pick one.</p>
+
+          <div class="artwrap">
+            <svg class="art" viewBox="0 0 660 232" role="img"
+                 aria-label="A shelf of books the machine has read, with one book sliding further and further away from the shelf">
+              <text class="arttxt" x="30" y="28">Everything it has ever read</text>
+              <g>
+                <rect x="34" y="56" width="20" height="120" rx="2" fill="var(--navy)"/>
+                <rect x="58" y="70" width="16" height="106" rx="2" fill="var(--sky)"/>
+                <rect x="78" y="50" width="22" height="126" rx="2" fill="var(--maroon)" opacity=".7"/>
+                <rect x="104" y="64" width="15" height="112" rx="2" fill="var(--navy)" opacity=".7"/>
+                <rect x="123" y="76" width="24" height="100" rx="2" fill="var(--sky)"/>
+                <rect x="151" y="54" width="18" height="122" rx="2" fill="var(--navy)"/>
+                <rect x="173" y="68" width="21" height="108" rx="2" fill="var(--maroon)" opacity=".55"/>
+                <rect x="198" y="60" width="16" height="116" rx="2" fill="var(--sky)"/>
+                <rect x="218" y="74" width="23" height="102" rx="2" fill="var(--navy)" opacity=".8"/>
+                <rect x="245" y="52" width="17" height="124" rx="2" fill="var(--sky)"/>
+                <rect x="266" y="66" width="22" height="110" rx="2" fill="var(--maroon)" opacity=".6"/>
+                <rect x="292" y="78" width="16" height="98" rx="2" fill="var(--navy)"/>
+                <rect x="312" y="58" width="20" height="118" rx="2" fill="var(--sky)"/>
+                <rect x="336" y="72" width="18" height="104" rx="2" fill="var(--navy)" opacity=".7"/>
+                <rect x="358" y="62" width="24" height="114" rx="2" fill="var(--maroon)" opacity=".5"/>
+                <rect x="28" y="176" width="360" height="10" rx="2" fill="var(--navy)"/>
+              </g>
+
+              <rect class="gapbar" x="390" y="120" width="1" height="4" rx="2" fill="var(--teal)"/>
+
+              <g class="bk">
+                <rect x="396" y="56" width="26" height="120" rx="2" fill="var(--maroon)"/>
+                <rect x="402" y="72" width="14" height="4" rx="2" fill="var(--white)" opacity=".55"/>
+                <rect x="402" y="82" width="14" height="4" rx="2" fill="var(--white)" opacity=".35"/>
+                <text class="artnote" x="409" y="204" text-anchor="middle">your idea</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="gauges">
+            <div class="gauge">
+              <h6>How much this looks like things I've seen</h6>
+              <div class="gtrack"><i class="live"></i></div>
+              <p>This is the number that comes back. It moves.</p>
+            </div>
+            <div class="gauge">
+              <h6>Whether this is going to work</h6>
+              <div class="gtrack unknown"></div>
+              <p>This is the number you wanted. It's blank, and it always was.</p>
+            </div>
+          </div>
+
+          <div class="panels pm">
+            <div class="panel a">
+              <p class="say">Slots straight in.</p>
+              <p>Thousands of near-identical plans on that shelf. The confidence is real information, but it is information about how crowded the category is. Not about whether yours wins it.</p>
+            </div>
+            <div class="panel b">
+              <p class="say">Close enough to reason about.</p>
+              <p>Enough of a match to borrow from, enough difference to matter. This is the sweet spot, and it's also where you're most likely to mistake a smooth answer for an informed one.</p>
+            </div>
+            <div class="panel c">
+              <p class="say">Nothing on the shelf to measure against.</p>
+              <p>The low score isn't a judgment about your idea. It's a report on the empty space around it. Same output either way, and nothing tells you which one you're looking at.</p>
+            </div>
+          </div>
+        </div>
+        <p class="tool-note">The teal line is the only thing the machine can actually measure. Both bars underneath would sit next to each other on a dashboard looking equally official, and only one of them was ever filled in.</p>
+      </div>
+    </div>
+
+    <div class="digest">
+      <span class="lab">The symmetry author Farsan Madjdi kept coming back to</span>
+      <h4>The same machinery that rewards resemblance punishes its absence</h4>
+      <p>There's no separate channel for "unprecedented and good." Two ventures get low marks and high marks for reasons that have nothing to do with each other, and the output looks the same either way.</p>
+      <blockquote>Something that could look plausible … resembles what has worked before, while another venture can look implausible simply because there is little precedent for it.<cite>Farsan Madjdi, in conversation</cite></blockquote>
+      <p style="margin-top:.9em">The paper says this plainly: on well-trodden ground, resemblance is a reasonable thing to measure. It's real information about a market that exists. The trouble starts when it gets read as information about one that doesn't.</p>
+      <div class="plain">
+        <span class="lab">In plain terms</span>
+        <p>Imagine asking someone very well read who has never met your customers. You get a confident answer assembled from what other people wrote down. Worth something. Not worth one honest conversation with a customer, and much easier to get, which is the whole trouble.</p>
+      <p><strong>This landed on me directly.</strong> I'd been reading the model's answer about my own ideas as a verdict. It was a distance measurement, and I'd confused the two for months.</p>
+      <p>Which raises the obvious follow-up: if distance is all it can measure, what exactly is it that can't be measured? Two jars.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="scene" id="s3">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Three — two kinds of not knowing</span>
+      <h2 class="scene-title">There's not knowing the answer, and then there's the answer not existing yet.</h2>
+      <p class="scene-lede">This distinction is doing most of the work in the paper. I found it easier to picture than to define, so here are two jars.</p>
+    </div>
+
+    <div class="tool" id="jarTool">
+      <div class="tool-head"><h4>One jar, two kinds of not knowing</h4><span class="lab">Drag, count, then draw</span></div>
+      <div class="tool-body">
+        <div class="modebar" role="group" aria-label="Which kind of not knowing">
+          <button type="button" class="modebtn on" data-mode="risk">Risk: you can count</button>
+          <button type="button" class="modebtn" data-mode="unc">Uncertainty: you can't</button>
+        </div>
+        <p class="hint" id="jarHint">Drag a marble down into the jar. Drop one outside and it rolls away. The jar holds ten.</p>
+
+        <div class="jarstage">
+          <div class="jarcanvaswrap">
+            <canvas id="jarCanvas" width="360" height="400" aria-label="A jar you can drag marbles into"></canvas>
+          </div>
+          <div class="jarside">
+            <div class="pblocks" id="pBlocks">
+              <div class="pblock red">
+                <span class="plabel">chance of drawing maroon</span>
+                <b class="pnum" id="pRed">50%</b>
+                <span class="pform" id="fRed">3 of 6 marbles</span>
+              </div>
+              <div class="pblock blue">
+                <span class="plabel">chance of drawing navy</span>
+                <b class="pnum" id="pBlue">50%</b>
+                <span class="pform" id="fBlue">3 of 6 marbles</span>
+              </div>
+            </div>
+
+            <p class="sideline" id="sideLine">Add or remove marbles and the odds follow.</p>
+
+            <div class="drawrow" id="drawRow">
+              <button type="button" class="drawbtn red" data-guess="red">Call maroon</button>
+              <button type="button" class="drawbtn blue" data-guess="blue">Call navy</button>
+              <button type="button" class="drawbtn ghost" id="jarReset">Start over</button>
+            </div>
+
+            <div class="vwrap" id="vWrap">
+              <b class="vbig" id="vWord">—</b>
+              <span class="vsub" id="vSub">no draws yet</span>
+              <span class="vlog" id="vLog"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panels jarpanels">
+          <div class="panel jp jp-risk">
+            <p class="say">That's risk, and it's the easy one.</p>
+            <p>You don't know which marble comes out, but you know what's in there, so the odds fall out of counting. Loads of business decisions look like this. How many customers churn next quarter, with three years of history behind it. Which of three sites the new shop should go in.</p>
+            <p>Author Bernd Wurth used that second one himself as an example of where these tools genuinely earn their money.</p>
+            <blockquote>If you have data sets about population density, what other stores are there and everything, AI will easily find you the top three locations …<cite>Bernd Wurth, in conversation</cite></blockquote>
+            <p style="margin-top:.9em">That's two weeks saved, and nobody in this argument has a problem with any of it.</p>
+          </div>
+          <div class="panel jp jp-unc" hidden>
+            <p class="say">That's uncertainty, and it's a different animal.</p>
+            <p>Same jar. You built it a minute ago. Now you can't see in, and here's the part that matters: something keeps topping it up while you play, so the mix drifts. Your last twenty draws tell you nothing about the next one.</p>
+            <p>That's the friction. No number to find, so nothing to be right about. You can't compute the odds or audit the decision afterward, because the thing you decided against has already changed. The economist Frank Knight described this a century ago, and a lot of new ventures live there.</p>
+            <p>Ask in 2007 whether people will let strangers sleep in their spare room, and you aren't facing an estimation problem. The answer hadn't been decided yet. Airbnb's founders didn't find it. They built it, coaxing people into trusting each other until the whole thing felt normal.</p>
+            <span class="src">Airbnb is one of the paper's own examples, p. 4.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="axis-row"><span>Why "just get better data" doesn't rescue you</span></div>
+      <div class="cell cell-a">
+        <h4>Medicine gets a control group</h4>
+        <p>Drug trials work because you can hold a group back and compare. That's how a fuzzy question turns into a number you can act on.</p>
+        <blockquote>… that's why you do RCTs, like a gold standard in medicine, because you establish the counterfactual.<cite>Bernd Wurth, in conversation</cite></blockquote>
+        <p style="margin-top:.9em">An RCT is a randomised controlled trial: split people into two groups at random, treat one and not the other, and the gap between them is your answer. The counterfactual is the group you held back, the version of events where you didn't do the thing. It's the whole basis of knowing that a drug works.</p>
+      </div>
+      <div class="cell cell-b">
+        <h4>Funding decisions don't</h4>
+        <p>You see something once and your judgment has already moved. Present it differently and you get a different answer. No two founders are the same input, and no two panels are either.</p>
+        <blockquote>You can't give an investor the same venture over and over.<cite>Bernd Wurth, in conversation</cite></blockquote>
+        <p style="margin-top:.9em">So the founder has to spend money before anyone can know. That's the job.</p>
+        <blockquote>… entrepreneurs have to commit resources before the relevant evidence exists.<cite>Farsan Madjdi, in conversation</cite></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="scene alt" id="s4">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Four — the picture, and the four cases in it</span>
+      <h2 class="scene-title">A big hump, and a long thin tail.</h2>
+      <p class="scene-lede">The paper has two figures worth your time and they're really one thing. The curve shows where the money goes. The table sorts ventures by where they sit on it. Click a part of the curve.</p>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h4>Where you sit on the line, and what follows from it</h4><span class="lab">Fig. 1, p. 4 and Table 1, p. 5</span></div>
+      <div class="tool-body">
+        <div class="fig">
+          <input class="sr" type="radio" name="curve" id="c1">
+          <input class="sr" type="radio" name="curve" id="c2">
+          <input class="sr" type="radio" name="curve" id="c3">
+          <input class="sr" type="radio" name="curve" id="c4">
+
+          <p class="poke">Click part of the curve</p>
+          <div class="ctl">
+            <span class="ctl-lab">Pick a spot</span>
+            <label for="c1">Plenty like it</label>
+            <label for="c2">A new twist on a known thing</label>
+            <label for="c3">Nothing like it</label>
+            <label for="c4">When the score guards the door</label>
+          </div>
+          <p class="hint">Cycling on its own until you pick one.</p>
+
+          <div class="artwrap">
+            <svg class="art" viewBox="0 0 700 320" role="img"
+                 aria-label="A long-tailed curve of where funding goes. Three bands mark the crowded peak, the shoulder and the thin tail, and a dashed second curve shows the shift the authors describe.">
+              <defs>
+                <clipPath id="humpClip"><rect x="60" y="20" width="163" height="240"/></clipPath>
+                <clipPath id="tailClip"><rect x="223" y="20" width="430" height="240"/></clipPath>
+              </defs>
+
+              <g class="zone z1">
+                <rect x="76" y="40" width="134" height="208" rx="8" fill="var(--maroon)" opacity=".13"/>
+                <text class="zlab" x="143" y="34" text-anchor="middle">plenty like it</text>
+              </g>
+              <g class="zone z2">
+                <rect x="210" y="40" width="120" height="208" rx="8" fill="var(--sky)" opacity=".28"/>
+                <text class="zlab" x="270" y="34" text-anchor="middle">a new twist</text>
+              </g>
+              <g class="zone z3">
+                <rect x="330" y="40" width="316" height="208" rx="8" fill="var(--navy)" opacity=".13"/>
+                <text class="zlab" x="488" y="34" text-anchor="middle">nothing like it</text>
+              </g>
+
+              <line x1="76" y1="248" x2="646" y2="248" stroke="var(--rule)" stroke-width="2"/>
+              <line x1="76" y1="248" x2="76" y2="40" stroke="var(--rule)" stroke-width="2"/>
+              <text class="arttxt" transform="translate(36,150) rotate(-90)" text-anchor="middle">Money and attention</text>
+
+              <g class="chl bump">
+                <path d="M76,242 C104,242 126,58 162,58 C206,58 220,180 268,210 C334,232 456,237 646,239 L646,230 C456,228 334,218 268,190 C220,162 206,92 162,92 C126,92 104,242 76,242 Z" fill="var(--maroon)" opacity=".22" clip-path="url(#humpClip)"/>
+              </g>
+              <g class="chl tail">
+                <path d="M76,242 C104,242 126,58 162,58 C206,58 220,180 268,210 C334,232 456,237 646,239 L646,230 C456,228 334,218 268,190 C220,162 206,92 162,92 C126,92 104,242 76,242 Z" fill="var(--navy)" opacity=".22" clip-path="url(#tailClip)"/>
+              </g>
+
+              <path class="cpath c-before"
+                    d="M76,242 C104,242 126,92 162,92 C206,92 220,162 268,190 C334,218 456,228 646,230"/>
+              <g class="afterWrap">
+                <path class="cpath c-after"
+                      d="M76,242 C104,242 126,58 162,58 C206,58 220,180 268,210 C334,232 456,237 646,239"/>
+                <text class="clab bump" x="228" y="72">talked up</text>
+                <text class="clab tail" x="500" y="196" text-anchor="end">talked down</text>
+              </g>
+
+              <circle class="curveRider" r="7" fill="var(--teal)"/>
+              <text class="arttxt" x="76" y="272">Loads of things like it</text>
+              <text class="arttxt" x="646" y="272" text-anchor="end">Nothing like it</text>
+            </svg>
+          </div>
+
+          <div class="panels pc">
+            <div class="panel a">
+              <span class="zonesub">The crowded peak</span>
+              <p class="zonehead">Plenty like it, and the data knows how those went.</p>
+              <dl class="spec">
+                <div class="row"><dt>What it looks like</dt><dd>Stable, repeated patterns that are well covered in what's been written. You really can work out how it's likely to go from things that already happened.</dd></div>
+                <div class="row"><dt>Which tools</dt><dd>Prediction, scoring, forecasting.</dd></div>
+                <div class="row"><dt>What goes wrong</dt><dd>Mild overconfidence. A close comparison gets treated as a promise rather than a hint.</dd></div>
+                <div class="row"><dt>Who ends up funded</dt><dd>Ventures that fit the existing criteria, efficiently. Little effect on the range of what gets backed.</dd></div>
+                <div class="row gov"><dt>What to do</dt><dd>Use it as an aid. Show how confident it is and how close the comparison really was. Flag where the match is only partial.</dd></div>
+              </dl>
+            </div>
+
+            <div class="panel b">
+              <span class="zonesub">The shoulder</span>
+              <p class="zonehead">Genuinely new, but you can still find something to hold it against.</p>
+              <dl class="spec">
+                <div class="row"><dt>What it looks like</dt><dd>Real novelty, with partial analogies available. Comparable markets, visible demand, something to reason from.</dd></div>
+                <div class="row"><dt>Which tools</dt><dd>Generative models, analytics, market intelligence.</dd></div>
+                <div class="row"><dt>What goes wrong</dt><dd>False positives. Something that hangs together gets mistaken for something that's understood.</dd></div>
+                <div class="row"><dt>Who ends up funded</dt><dd>More ideas get considered, but attention can drift back to familiar recombinations rather than departures from them.</dd></div>
+                <div class="row gov"><dt>What to do</dt><dd>Treat what it produces as a provocation, not an endorsement. Make somebody establish the feasibility separately before anyone commits money.</dd></div>
+              </dl>
+            </div>
+
+            <div class="panel c">
+              <span class="zonesub">The thin tail</span>
+              <p class="zonehead">Nothing like it, and somebody has to make the call.</p>
+              <dl class="spec">
+                <div class="row"><dt>What it looks like</dt><dd>Whether it works depends on experiments nobody has run, rules that don't exist yet, or a category that has to be built. This is where the rogue ideas live.</dd></div>
+                <div class="row"><dt>Which tools</dt><dd>Prediction and screening, where the miscalibration is worst. Generative models are usable here only for provocation, never for a verdict.</dd></div>
+                <div class="row"><dt>What goes wrong</dt><dd>False negatives. Hard to recognize gets read as unlikely to work.</dd></div>
+                <div class="row"><dt>Who ends up funded</dt><dd>Where the score gets the last word, not these. They lose credibility and face a higher bar, and the tail thins out.</dd></div>
+                <div class="row gov"><dt>What to do</dt><dd>The score doesn't decide. Carve out room in your screening for things with no comparison set, and put a human argument next to every number.</dd></div>
+              </dl>
+            </div>
+
+            <div class="panel d">
+              <span class="zonesub">Cutting across all three</span>
+              <p class="zonehead">And then the score stops advising and starts deciding.</p>
+              <p>This is the dashed line, and it's the paper's sketch of a risk rather than a forecast. Same ideas, same budget, different shape. The peak grows because coherent-sounding plans get talked up, the tail thins because unfamiliar ones get talked down, and the total underneath barely moves. Which is why it's easy to miss.</p>
+              <dl class="spec">
+                <div class="row"><dt>What it looks like</dt><dd>Scores baked into funding, accelerator intake, hiring or whatever gets shown to whom, whatever kind of venture is being judged.</dd></div>
+                <div class="row"><dt>Which tools</dt><dd>Rankings, recommenders, automated screening, decision-support pipelines.</dd></div>
+                <div class="row"><dt>What goes wrong</dt><dd>Everything above, amplified. The number stands in for the judgment instead of feeding it.</dd></div>
+                <div class="row"><dt>Who ends up funded</dt><dd>The recognizable, across every category at once, unless something is deliberately protecting the range.</dd></div>
+                <div class="row gov"><dt>What to do</dt><dd>Cap what the score is allowed to weigh. Require a human to sign off on any low-precedent rejection. Audit the spread of what you funded, once a year.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <p class="tool-note">The right-hand column is the authors' own advice, not mine. Author Farsan Madjdi's version of what the dashed line does:</p>
+        <blockquote>… generative AI can expand the search space while … anchoring your imagination to historically available material.<cite>Farsan Madjdi, in conversation</cite></blockquote>
+        <p class="tool-note" style="border-top:0;margin-top:.6em;padding-top:0">Which changes what, exactly? Not the number of ideas.</p>
+        <blockquote>… not simply more or fewer ideas … change the composition of the ideas that appear plausible.<cite>Farsan Madjdi, in conversation</cite></blockquote>
+        <span class="src">Curve redrawn from Fig. 1, p. 4. The four cases and the closing column are Table 1, p. 5, put into plainer words.</span>
+      </div>
+    </div>
+
+    <div class="digest">
+      <span class="lab">The thing to take from this</span>
+      <h4>Everything in the paper hangs off one measurement</h4>
+      <p>How much has already been written about the thing you're proposing. That's the shelf gap from earlier, the x-axis here, and what sorts the four cases. It says nothing about whether your idea is good. How much it decides depends on how much weight the room gives the score.</p>
+      <p>The authors treat this as a risk, not a rule. The symptom isn't a smaller budget. It's that everything you fund starts to look alike. Which brings up the obvious objection.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="scene" id="s5">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Five — the obvious objection</span>
+      <h2 class="scene-title">Somebody still has to say no.</h2>
+      <p class="scene-lede">Here's the pushback I'd expect at a board table, and the reason I don't think it lands where people think it does.</p>
+    </div>
+
+    <div class="compare">
+      <div class="axis-row"><span>The objection</span></div>
+      <div class="cell cell-a">
+        <h4>Selection is the job</h4>
+        <p>Money runs out. Every round turns down most of what comes in, and it always did. If the unfamiliar applications get turned down more often than the familiar ones, that might be nothing more sinister than a committee doing what committees are for.</p>
+        <p>There's a stronger version of it too, and you'll hear it in the room. Most new ventures fail. Most of the strange ones fail harder. A screen that's tough on things nobody has tried is being sensible, not narrow-minded.</p>
+      </div>
+      <div class="cell cell-b">
+        <h4>Two problems with that</h4>
+        <p>The first is uncomfortable, and I only noticed it while writing this up. "Most of them would have failed anyway" assigns odds to the exact set where the argument is that you can't. Nobody has that denominator. Nobody tracks what happens to unfamiliar ideas that get turned down, and the fate of the never-funded isn't observable anyway. The claim feels like evidence and is really a feeling of familiarity, the same move the machine makes.</p>
+        <p>The second: the paper isn't disputing any particular no. It's asking whether the reason behind the no has quietly become the same reason everywhere. One committee reaching for what it recognizes is judgment. Every committee reaching for the same thing, because they consult tools trained on the same past, is something else.</p>
+      </div>
+    </div>
+
+    <div class="digest caution">
+      <span class="lab">What I'd actually do about it</span>
+      <h4>You can't run the study. You can instrument your own room.</h4>
+      <p>The paper closes by naming the research it wants done: watch whether money drifts toward familiar-looking ventures, and whether the spread of what gets funded narrows where these tools are built in. A hard study to run, for all the reasons above.</p>
+      <p>You don't need a literature to see your own desk. Log the decisions. Note when a human overrides the score, and why. Check the spread of what you funded once a year. That's paperwork, not a research program, and it answers the question for the one room you control. The draft policy at the bottom does exactly that.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="scene alt" id="s6">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Six — your turn</span>
+      <h2 class="scene-title">Four applications. Pick one to fund.</h2>
+      <p class="scene-lede">Two of these are famous, which is the trap. The fourth one is why the exercise is honest.</p>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h4>What the score can and can't see</h4><span class="lab">Have a go</span></div>
+      <div class="tool-body">
+        <div class="warnband">
+          <span>Careful with this one</span>
+          A and B are here because we already know how they ended, which is the exact reasoning mistake this paper is about. That's why D exists.
+        </div>
+
+        <div class="fig">
+          <input class="sr" type="radio" name="bench" id="b1">
+          <input class="sr" type="radio" name="bench" id="b2">
+          <input class="sr" type="radio" name="bench" id="b3">
+          <input class="sr" type="radio" name="bench" id="b4">
+
+          <blockquote style="margin-bottom:1.2em">There's so many things that changed and that had to change for Uber to be successful.<cite>Bernd Wurth, in conversation</cite></blockquote>
+
+          <p class="poke">Pick one to fund</p>
+          <div class="choices bench">
+            <label for="b1"><b>A</b><span>Strangers in your spare room, 2007</span></label>
+            <label for="b2"><b>B</b><span>A village that owns its own windmill, 1970s</span></label>
+            <label for="b3"><b>C</b><span>Fourth entrant in a busy category</span></label>
+            <label for="b4"><b>D</b><span>Nothing like it, and no business</span></label>
+          </div>
+
+          <div class="verdicts">
+            <div class="vd vd-idle">
+              <h5>Four folders, no outcomes attached.</h5>
+              <div class="two">
+                <div><h6>What you get</h6><p>Whatever a precedent-trained score can see in each one, and whatever it can't.</p></div>
+                <div><h6>What you won't get</h6><p>A right answer. Two of these are famous and one exists to stop that mattering.</p></div>
+              </div>
+            </div>
+            <div class="vd v1">
+              <span class="zonesub">The thin tail</span>
+              <h5>Nothing to compare it to, and a social rule in the way.</h5>
+              <div class="two">
+                <div>
+                  <h6>What the score sees</h6>
+                  <p>A business that needs people to host strangers overnight, in a market with no equivalent and legal trouble waiting in every city. The safest thing it can suggest is that you make it more like a hotel booking site.</p>
+                </div>
+                <div>
+                  <h6>What it can't see</h6>
+                  <p>That the rule was about to change, partly because of this. The paper's account is that the founders had to build the trust, make the practice feel normal and drag a whole category into existence. Nobody detected that it would work. They went and made it work.</p>
+                </div>
+              </div>
+            </div>
+            <div class="vd v2">
+              <span class="zonesub">The thin tail</span>
+              <h5>The energy industry thought it was a hobby.</h5>
+              <div class="two">
+                <div>
+                  <h6>What the score sees</h6>
+                  <p>Power gets made in big expensive plants. A village-owned turbine has no match anywhere in the operating data and nowhere obvious to sit in the system.</p>
+                </div>
+                <div>
+                  <h6>What it can't see</h6>
+                  <p>That the people behind the Danish wind industry did the boring institutional work alongside the engineering: the rules, the grid connections, the ownership models. All of that had to be invented too.</p>
+                </div>
+              </div>
+            </div>
+            <div class="vd v3">
+              <span class="zonesub">The crowded peak</span>
+              <h5>The one that scores best.</h5>
+              <div class="two">
+                <div>
+                  <h6>What the score sees</h6>
+                  <p>Comparable exits, a citable market, numbers that rhyme with companies that worked. It all lines up, and the coherence is real.</p>
+                </div>
+                <div>
+                  <h6>Something I wondered, which isn't in the paper</h6>
+                  <p>Being easy to recognize might cut both ways. A pattern clear enough for a machine to spot is clear enough for four other teams to copy. The authors don't make this argument and I've got no evidence for it. File it as a question worth asking.</p>
+                </div>
+              </div>
+            </div>
+            <div class="vd v4">
+              <span class="zonesub">The thin tail, again</span>
+              <h5>The control. Nothing like it, and it doesn't work.</h5>
+              <div class="two">
+                <div>
+                  <h6>What the score sees</h6>
+                  <p>No match, no analog, weak signal. Exactly what it saw in A and B.</p>
+                </div>
+                <div>
+                  <h6>Why this is the important one</h6>
+                  <p>The machine was right this time, and nothing in the folder told it apart from the other two. That's the shape of the problem. The score can't separate "new" from "quietly doesn't work," and neither can you, not reliably.</p>
+                  <p>And nobody knows how often D happens. Unfunded ideas leave no record of what they would have become. You can't even say D is the common case, which is why any policy here has to work without knowing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="src">Airbnb and the Danish wind industry are examples the paper uses on p. 4. C and D are mine. Case labels follow Table 1, p. 5.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="scene" id="s7">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Seven — advice, or a locked door</span>
+      <h2 class="scene-title">Everything changes when the score stops being a suggestion.</h2>
+      <p class="scene-lede">Same output. Different spot in the process. Completely different consequences.</p>
+    </div>
+
+    <figure class="artband">
+      <svg class="art" viewBox="0 0 660 214" role="img"
+           aria-label="On the left, two people at a desk reading a document together. On the right, a closed door with a rejected page pushed back under it">
+        <g>
+          <rect x="60" y="130" width="220" height="8" rx="3" fill="var(--navy)"/>
+          <path d="M78,138 v40 M262,138 v40" stroke="var(--navy)" stroke-width="4" stroke-linecap="round"/>
+          <g class="nod">
+            <circle cx="118" cy="72" r="15" fill="none" stroke="var(--navy)" stroke-width="3"/>
+            <path d="M118,88 v22 M118,98 l24,20" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g class="nod b">
+            <circle cx="216" cy="72" r="15" fill="none" stroke="var(--navy)" stroke-width="3"/>
+            <path d="M216,88 v22 M216,98 l-22,20" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <rect class="doc" x="146" y="106" width="42" height="26" rx="3" fill="var(--teal)"/>
+          <text class="arttxt" x="170" y="204" text-anchor="middle">reading it together</text>
+        </g>
+        <line x1="336" y1="34" x2="336" y2="186" stroke="var(--rule)" stroke-width="2"/>
+        <g>
+          <rect x="430" y="34" width="140" height="148" rx="4" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+          <rect x="452" y="72" width="96" height="9" rx="4" fill="var(--maroon)"/>
+          <circle cx="548" cy="120" r="6" fill="var(--maroon)"/>
+          <line x1="404" y1="182" x2="606" y2="182" stroke="var(--maroon)" stroke-width="3"/>
+          <g class="rejected" transform="rotate(-9 392 168)">
+            <rect x="356" y="150" width="66" height="30" rx="3" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+            <rect x="366" y="160" width="34" height="4" rx="2" fill="var(--maroon)" opacity=".5"/>
+          </g>
+          <text class="arttxt" x="500" y="204" text-anchor="middle">or not getting through it</text>
+        </g>
+      </svg>
+    </figure>
+
+    <div class="compare">
+      <div class="axis-row"><span>Where it sits</span></div>
+      <div class="cell cell-a">
+        <h4>Sitting beside you</h4>
+        <p>It widens the search. Author Farsan Madjdi took the paradox head on: the range of ideas you consider genuinely grows, through combinations you wouldn't have reached. What shifts is which ones feel worth taking seriously.</p>
+      </div>
+      <div class="cell cell-b">
+        <h4>Sitting at the door</h4>
+        <p>The same output inside an investment committee or an accelerator's intake becomes the thing that decides, rather than a thing that informs.</p>
+        <blockquote>… you're being pushed towards the consensus …<cite>Bernd Wurth, in conversation</cite></blockquote>
+      </div>
+
+      <div class="axis-row"><span>And consensus isn't neutral ground</span></div>
+      <div class="cell cell-a">
+        <h4>The past is the training set</h4>
+        <p>This is where the bias conversation stops being a separate topic. If evaluation has historically favored certain founders and certain ways of writing, that preference is sitting in the data.</p>
+        <blockquote>AI is trained on all the past.<cite>Bernd Wurth, in conversation</cite></blockquote>
+      </div>
+      <div class="cell cell-b">
+        <h4>Asking nicely doesn't fix it</h4>
+        <p>Author Bernd Wurth's point is that telling a system to be fair doesn't make it fair, because the habit is in what it learned rather than in what you typed.</p>
+        <blockquote>Just by asking AI, you tell AI to be impartial. It's not automatically impartial because these biases are in there.<cite>Bernd Wurth, in conversation</cite></blockquote>
+        <p style="margin-top:.9em">So "pushes toward consensus" and "repeats old preferences" turn out to be the same behavior with two names, and an unusual founder can get caught by both at once.</p>
+      </div>
+
+      <div class="axis-row"><span>What happens when everyone's using it</span></div>
+      <div class="cell cell-a">
+        <h4>Every application gets better</h4>
+        <p>This is my first question, and the first half of the answer is yes. You use it to sharpen a grant application and your odds go up. I've felt that. Then Farsan asked the thing I hadn't.</p>
+        <blockquote>… if everyone else is doing it, what does that then actually mean? So where do we end then?<cite>Farsan Madjdi, in conversation</cite></blockquote>
+      </div>
+      <div class="cell cell-b">
+        <h4>And the signal goes flat</h4>
+        <p>Once every application is buffed by the same sort of tool, buffing stops telling you anything. Bernd mentioned the parallel in research funding, where one proposal is to stop ranking above a quality bar and draw lots instead.</p>
+        <blockquote>… above that, it basically becomes a lottery because it's so difficult and there's so much variation, like who your reviewer is …<cite>Bernd Wurth, in conversation</cite></blockquote>
+        <p>Hiring looks to be running the same experiment right now. Written by a machine, screened by a machine, and a stack of good candidates who all read the same.</p>
+      </div>
+    </div>
+
+    <div class="reviewgame" id="revGame">
+      <p class="figlead">What a reviewer sees after a year of this</p>
+
+      <div class="rg-round" id="rgR1">
+        <p class="rg-ask">Round one, before any of this. Three applications came in. Pick the strongest.</p>
+        <div class="rg-row" id="rgRow1"></div>
+        <div class="rg-meters" id="rgMeters1"></div>
+        <div class="rg-feedback" id="rgFb1"></div>
+      </div>
+
+      <div class="rg-round locked" id="rgR2" style="margin-top:1.6em">
+        <p class="rg-ask">Round two, a year later. Five came in. Pick the strongest.</p>
+        <div class="rg-help" id="rgHelp">
+          <button type="button" class="drawbtn red" id="rgAI">Ask the model</button>
+          <button type="button" class="drawbtn blue" id="rgExpert">Ask someone who knows the field</button>
+        </div>
+        <div class="rg-curvestage" id="rgStage">
+          <svg class="rg-curve" id="rgCurve" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M20,284 C80,284 132,118 202,118 C282,118 302,206 382,238 C520,272 760,280 980,282"
+                  fill="none" stroke="var(--navy)" stroke-width="3" opacity=".5"/>
+            <path d="M20,284 C80,284 132,118 202,118 C282,118 302,206 382,238 C520,272 760,280 980,282 L980,296 L20,296 Z"
+                  fill="var(--maroon)" opacity=".08"/>
+          </svg>
+          <div id="rgRow2"></div>
+        </div>
+        <div class="rg-axis"><span>reads like what you already funded</span><span>reads like nothing you have seen</span></div>
+        <div class="rg-meters" id="rgMeters2"></div>
+        <div class="rg-stream" id="rgStream" hidden></div>
+        <div class="rg-feedback" id="rgFb2"></div>
+        <div class="rg-fwd" id="rgFwd" hidden>
+          <button type="button" class="drawbtn ghost" id="rgPlay">Pause</button>
+          <span class="rg-fwdnote">Twenty runs of the next three years, one every two seconds. A simulation, not a finding. In the real thing you get one run and you only see the row you funded.</span>
+        </div>
+        <div class="rg-outcomes" id="rgOut"></div>
+        <p class="rg-tally" id="rgTally"></p>
+      </div>
+    </div>
+
+    <div class="digest caution">
+      <span class="lab">The line the paper draws, in its own words</span>
+      <h4>None of this is automatic</h4>
+      <p>If you take one thing from the paper, take this. The authors don't argue these tools are restrictive by nature. The claim is conditional: it turns on what you use the tool for, how legible your venture is in prior data, and how much authority the number gets.</p>
+      <blockquote>This effect is conditional rather than inevitable, where AI outputs are treated as advisory, variance may be preserved or even widened, whereas where they become authoritative gatekeeping mechanisms they redistribute legitimacy toward historically validated trajectories.<cite>Madjdi and Wurth, p. 4</cite></blockquote>
+      <p style="margin-top:.9em">Read the middle clause twice. Treated as advice, the variety of what gets funded may hold steady or even widen; the narrowing shows up at the door, not in the tool. The paper is just as direct the other way: where a venture is legible in prior data, AI “may usefully augment judgment,” and generative systems “may expand the range of ideas entrepreneurs consider.”<span class="src">Quoted phrases, p. 3. The conditional statement, p. 4.</span></p>
+    </div>
+
+    <p class="afterword">So my first answer: it helps, it helps everyone, and an advantage everyone holds cancels out. The last thing it does is close the gap between an application that reads well and one that reads badly. If your edge was writing better than the next person, that edge is going.</p>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="scene alt" id="s8">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Eight — the hard one</span>
+      <h2 class="scene-title">So how do you tell brilliant from daft?</h2>
+      <p class="scene-lede">This is the question I came into the call wanting answered. Both cases look identical from outside: no precedent, no comparison, nobody's done it. Neither author pretended it resolves cleanly, and I respected them more for saying so.</p>
+    </div>
+
+    <div class="compare">
+      <div class="axis-row"><span>What's left when the data can't help</span></div>
+      <div class="cell cell-a">
+        <h4>Evidence you go and make</h4>
+        <p>You can't run the trial, but you can run a pilot. A small group of real people who actually paid. Letters of intent. Recordings of customers describing the problem in their own words. None of that is in any training set, which is precisely why it's worth something.</p>
+      </div>
+      <div class="cell cell-b">
+        <h4>The people, and what they've already pulled off</h4>
+        <p>Author Farsan Madjdi turned the question back on the institutions, and it's the one I'd most want an incubator director to sit with.</p>
+        <blockquote>Should incubators, accelerators emphasize the idea that potential applicants come up with, or … the profile of applicants … people who show or have agency and who are capable of execution?<cite>Farsan Madjdi, in conversation</cite></blockquote>
+        <p style="margin-top:.9em">Now that anyone can have their idea written up beautifully, proof that someone gets things done is proof a machine didn't generate.</p>
+      </div>
+    </div>
+
+    <div class="digest field">
+      <span class="lab">From the interview</span>
+      <h4>The bit where somebody just has to have the idea</h4>
+      <p>Underneath all of this is the leap: coming up with the hypothesis before there's anything to check it against. You can't calculate your way to an idea nobody's had. Somebody has to have it, and then the testing starts.</p>
+
+      <figure class="artband">
+        <svg class="art" viewBox="0 0 660 236" role="img"
+             aria-label="On the left ledge, a taxi you can book in advance. On the right ledge, an ordinary car with a stranger driving. A dashed arc leaps between them.">
+          <g>
+            <rect x="66" y="100" width="104" height="30" rx="9" fill="none" stroke="var(--navy)" stroke-width="3"/>
+            <path d="M88,100 q10,-24 30,-24 h28 q18,2 26,24" fill="none" stroke="var(--navy)" stroke-width="3"/>
+            <rect x="104" y="66" width="30" height="13" rx="3" fill="var(--navy)"/>
+            <circle cx="92" cy="134" r="10" fill="none" stroke="var(--navy)" stroke-width="3"/>
+            <circle cx="150" cy="134" r="10" fill="none" stroke="var(--navy)" stroke-width="3"/>
+            <circle cx="206" cy="102" r="21" fill="none" stroke="var(--navy)" stroke-width="3"/>
+            <path d="M206,90 v13 l10,7" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <rect x="20" y="150" width="230" height="12" rx="3" fill="var(--navy)"/>
+          <path d="M28,162 v22 M132,162 v22 M240,162 v22" stroke="var(--navy)" stroke-width="2" opacity=".3"/>
+
+          <g>
+            <circle cx="452" cy="86" r="11" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+            <path d="M452,99 v24 M452,108 l16,10 M452,123 l-8,14 M452,123 l9,14"
+                  fill="none" stroke="var(--maroon)" stroke-width="3" stroke-linecap="round"/>
+            <rect x="492" y="100" width="104" height="30" rx="9" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+            <path d="M514,100 q10,-24 30,-24 h28 q18,2 26,24" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+            <circle cx="518" cy="134" r="10" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+            <circle cx="576" cy="134" r="10" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+            <text class="jq" x="452" y="62" text-anchor="middle" font-size="26">?</text>
+          </g>
+          <rect x="430" y="150" width="210" height="12" rx="3" fill="var(--maroon)"/>
+          <path d="M440,162 v22 M534,162 v22 M630,162 v22" stroke="var(--maroon)" stroke-width="2" opacity=".3"/>
+
+          <path class="leapArc" d="M255,144 q88,-78 172,0" fill="none" stroke="var(--teal)" stroke-width="4"
+                stroke-linecap="round"/>
+          <circle class="pulseDot" cx="252" cy="146" r="7" fill="var(--navy)"/>
+          <circle class="pulseDot late" cx="430" cy="146" r="7" fill="var(--maroon)"/>
+          <circle class="rider" r="8" fill="var(--teal)"/>
+          <text class="artnote" x="341" y="76" text-anchor="middle">the leap</text>
+          <text class="arttxt" x="135" y="212" text-anchor="middle">book a cab in advance</text>
+          <text class="arttxt" x="535" y="212" text-anchor="middle">get into a stranger's car</text>
+        </svg>
+      </figure>
+      <p>You do a small version of it constantly. Your car makes a noise on the highway and before any diagnostic runs, you already have a guess about what it is. The guess came from somewhere, it isn't a calculation, and the mechanic will confirm or kill it later.</p>
+      <p>The two ledges above are the difference in miniature. Left, a cab you can book ahead: easy to explain to a committee, harder than it looks because the market already exists. Right, the thing that worked, which needed a rule about strangers to change first. You can walk to the left idea. You have to jump to the right one.</p>
+      <p>Farsan's example was Steve Jobs at Xerox PARC, the research lab where much of the modern computer interface got built by a company that never worked out what it had. The technology was sitting there in the building. Seeing what it was for was a separate act entirely.</p>
+      <p>His wider point was that the things that move a society along have rarely arrived with the evidence already assembled.</p>
+      <blockquote style="border-left-color:var(--maroon)">It worked based on visions, on imaginations of entrepreneurs … They weren't in line with these plausibility signals and this expert consensus. These people actually had to go around it, or they even had to go against it.<cite>Farsan Madjdi, in conversation</cite></blockquote>
+      <p>Which raises something we chewed on for a while, and it's speculation rather than anybody's finding: how much one of these tools can help you spot something new might depend on how much you already know. It's not much use being hit on the head by an apple if you're not Newton.</p>
+      <p><strong>My second question, more or less answered.</strong> These tools hand you the adjacent thing, the ledge you can walk to, and they can widen the search. They can't make the jump for you. And if you don't carry enough of the domain to recognize the far ledge, a wider search just gives you more places to stand on the near one.</p>
+    </div>
+
+    <p class="pull">A score tells you what the past makes of your idea. It can't tell you what the future will do with it.</p>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="scene" id="s9">
+  <div class="wrap">
+    <div class="scene-head">
+      <span class="scene-n lab">Nine — Monday morning</span>
+      <h2 class="scene-title">Don't ask it for a verdict. Ask it for arguments.</h2>
+      <p class="scene-lede">The practical suggestion from the interview, and then a draft policy you can scribble on.</p>
+    </div>
+
+    <div class="digest field">
+      <span class="lab">Where the suggestion came from</span>
+      <h4>Stop asking one machine one question</h4>
+      <p>Author Farsan Madjdi's instinct was to treat it the way you'd treat money.</p>
+      <blockquote>… potentially you would use like a portfolio in a way. It's kind of like … how you should invest.<cite>Farsan Madjdi, in conversation</cite></blockquote>
+      <p style="margin-top:.9em">Author Bernd Wurth made it concrete by pointing at something a lot of us already do daily, in a completely different context.</p>
+      <blockquote style="border-left-color:var(--maroon)">… when you use them for coding … they do the implementation, they do a review and then they typically do an adversarial review. So they purposely try and find errors.<cite>Bernd Wurth, in conversation</cite></blockquote>
+      <p style="margin-top:.9em">Nobody ships code on one pass from one model. That's what most of us do when we ask a model about a business plan.</p>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h4>Four reviews of one unfamiliar application</h4><span class="lab">Open each one</span></div>
+      <div class="tool-body">
+        <div class="fig">
+          <input class="sr" type="radio" name="rev" id="r1">
+          <input class="sr" type="radio" name="rev" id="r2">
+          <input class="sr" type="radio" name="rev" id="r3">
+          <input class="sr" type="radio" name="rev" id="r4">
+
+          <p class="poke">Click to open</p>
+          <div class="ctl">
+            <span class="ctl-lab">Four passes</span>
+            <label for="r1">Take it at face value</label>
+            <label for="r2">Assume they're right</label>
+            <label for="r3">Try to break it</label>
+            <label for="r4">Why is nobody else doing this?</label>
+          </div>
+
+          <div class="reveal">
+            <div class="reveal-in">
+              <div class="rp-wrap">
+                <div class="rp rp-1">
+                  <span class="who">Pass one</span>
+                  <p class="verdict">Believe every word. Does it hold together?</p>
+                  <p>Do the claims agree with each other? Do the numbers agree with the claims? It's the cheapest genuinely useful thing these tools do, and it's a tidiness check. Passing means the application isn't muddled. That's all it means.</p>
+                </div>
+                <div class="rp rp-2">
+                  <span class="who">Pass two</span>
+                  <p class="verdict">Now assume everything they predict comes true.</p>
+                  <p>Push it as far as it goes. If the world moves the way they say it will, what is this thing? Are we funding it at the right size, or should we be doing a great deal more? This is the pass that stops you under-reacting to something big.</p>
+                </div>
+                <div class="rp rp-3">
+                  <span class="who">Pass three</span>
+                  <p class="verdict">Now try to knock it over.</p>
+                  <p>Bernd put it as a question you ask deliberately, one assumption at a time.</p>
+                  <blockquote>What if individual assumptions don't hold? Do you still have a business, or is the whole thing falling apart?<cite>Bernd Wurth, in conversation</cite></blockquote>
+                  <p style="margin-top:.9em">In the Uber case that assumption is people getting into cars driven by strangers. Naming it tells you the cheap experiment you should run before you write a big cheque.</p>
+                </div>
+                <div class="rp rp-4">
+                  <span class="who">Pass four</span>
+                  <p class="verdict">Is this a new field, or a graveyard?</p>
+                  <p>There's nothing to compare it to. Fine. But is that because nobody has tried, or because plenty tried and nobody wrote it up? Opposite answers, same score. You have to ask this one on purpose, because nothing else in your process will. This pass is my addition, not theirs.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tell">
+            <span class="lab">And then</span>
+            <p>Four reports, possibly all agreeing, and the call is still yours. If you still think there's something in it, that's not a bug. That's the part of the job nobody was ever going to do for you.</p>
+          </div>
+        </div>
+        <span class="src">Structure suggested by the authors, who pointed out that coding assistants already work this way: write it, review it, then attack it.</span>
+      </div>
+    </div>
+
+    <div class="digest">
+      <span class="lab">What they're not saying</span>
+      <h4>Neither of them thinks you should stop using LLMs</h4>
+      <p>Both said so directly and more than once. The argument is about where the output sits, how much authority you hand it, and whether anyone has bothered to check what it can't see.</p>
+      <blockquote>… it's helpful to compare it to certain patterns, but that shouldn't be the only criteria.<cite>Bernd Wurth, in conversation</cite></blockquote>
+      <div class="plain">
+        <span class="lab">One last thing</span>
+        <p>The paper's acknowledgements say the authors used Claude to help with copyediting and checked every change themselves. Which is, more or less, the policy the paper recommends, applied to the paper.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <div class="inner">
+      <span class="lab">What I came away with</span>
+      <p class="kicker">I went in with two questions about my own work. Both answers were smaller, and more useful, than the ones I'd imagined.</p>
+      <p>On whether these tools help my funding odds: yes, and so does everyone else's copy of them. The lift stops being an advantage the moment everyone has it. What survives is the part I can't outsource, so I've stopped polishing and started collecting: a pilot with people who paid, customers describing the problem in their own words, the assumption that would sink the whole thing written down before anyone asks.</p>
+      <p>On whether they blunt my ability to find something new: not exactly, but they pull. Generous with the adjacent idea, quiet about the one nobody has tried. The quiet is easy to mistake for a verdict. It's a report on how much has been written, and for anything genuinely new that's close to nothing.</p>
+      <p>So I've changed what I ask for. Not whether an idea is good, because it will say yes and I'll believe it, since I wanted to. I ask it to take the idea apart. Then I go find the thing the past couldn't tell me.</p>
+      <p>The uneasy feeling hasn't gone. It's gotten more specific, which is the most I can ask of an hour with two people who've thought about this longer than I have. I know what I'm reaching for the tool to do now, and what it was never going to do.</p>
+    </div>
+  </div>
+</section>
+
+<section class="people">
+  <div class="wrap">
+    <h2>Who did the work</h2>
+    <p class="intro">Two researchers at Glasgow who came into academia from different directions and landed on the same question.</p>
+
+    <div class="pgrid">
+      <div class="person">
+        <h3>Farsan Madjdi</h3>
+        <span class="role">Assistant Professor</span>
+        <span class="where">Adam Smith Business School, University of Glasgow</span>
+        <p>Spent about twenty years in industry first, in management, business development and innovation roles, which he describes as a long run of dealing with what comes next. He now researches how founders spot and judge opportunities, how their identities shape what they chase, and how social ventures get built.</p>
+        <span class="orcid"><a href="https://orcid.org/0000-0002-2187-6568">ORCID 0000-0002-2187-6568</a></span>
+      </div>
+
+      <div class="person">
+        <h3>Bernd Wurth</h3>
+        <span class="role">Senior Lecturer</span>
+        <span class="where">Adam Smith Business School, University of Glasgow</span>
+        <p>Trained as an engineer and works on complex systems, building simulations of how startup ecosystems behave. His route to this paper, in his own words, was a windy road: systems work, then conversations about AI, then what these tools are quietly doing to the way decisions get made.</p>
+        <span class="orcid"><a href="https://orcid.org/0000-0002-6688-4270">ORCID 0000-0002-6688-4270</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="thanks">
+      <span class="lab">Thanks</span>
+      <p>To Farsan Madjdi and Bernd Wurth, who gave an hour to a stranger with fifteen questions and answered most of them in the first four.</p>
+    </div>
+
+    <p class="cite">
+      Farsan Madjdi and Bernd Wurth (2026).<br>
+      <strong>AI-mediated plausibility regimes: Entrepreneurial judgment, epistemic risk, and the distribution of entrepreneurial futures.</strong><br>
+      <em>Journal of Business Venturing Insights</em>, 26, e00644.
+      <a href="https://doi.org/10.1016/j.jbvi.2026.e00644">doi.org/10.1016/j.jbvi.2026.e00644</a><br>
+      Open access under CC BY.<br><br>
+      The quotes are from a recorded interview and trimmed with ellipses. Everything else attributed to the authors is paraphrase. The two invented applications, the fourth bench case, the draft policy and the applicant checklist are mine and have no source, and so are the ride-hailing doorway and the mortgage comparison; the paper's own examples are Airbnb and the Danish wind industry, p. 4. Job titles and school come from the interview and the University of Glasgow listings; the paper itself gives only the university. ORCID records checked.
+    </p>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  var cv = document.getElementById('jarCanvas');
+  if (!cv) return;
+  var tool = document.getElementById('jarTool');
+  var ctx = cv.getContext('2d');
+  var W = 360, H = 400;
+  var C = { maroon:'#763b56', navy:'#3b5576', sky:'#7da3cc', teal:'#31dcc5', muted:'#7a6b74' };
+
+  // smaller jar, ten marbles, lid when full
+  var JX1 = 112, JX2 = 248, JTOP = 152, JBOT = 332, R = 14, MAXN = 10;
+  var FLOOR = JBOT + 12;
+  var TRAY = [ {x:150, y:62, col:'red', ph:0}, {x:212, y:62, col:'blue', ph:1.9} ];
+
+  var mode = 'risk', opq = 0, opqTarget = 0, lid = 0, dropA = 0, tipA = 1, tipDone = false;
+  var marbles = [], loose = [], fallers = [], hidden = [], draws = [];
+  var drag = null, bias = 0.5, spawnAt = 0, t0 = 0;
+  var flashRef = null, flashAt = 0, riskDraws = [];
+
+  function scale(){
+    var dpr = window.devicePixelRatio || 1;
+    var w = cv.clientWidth || W;
+    cv.width = Math.round(w*dpr); cv.height = Math.round(w*(H/W)*dpr);
+    ctx.setTransform(dpr*w/W, 0, 0, dpr*w/W, 0, 0);
+  }
+  window.addEventListener('resize', scale);
+
+  function trayY(t){ return t.y + Math.sin(t0*0.0016 + t.ph) * 5; }
+
+  function add(col, x, y){
+    if (marbles.length >= MAXN){ spill(col, x, y); return; }
+    marbles.push({x:x, y:y, vx:(Math.random()-0.5)*1.1, vy:0, col:col});
+  }
+  function spill(col, x, y){
+    var dir = x < W/2 ? -1 : 1;
+    loose.push({x:x, y:y, vx:dir*(1.4+Math.random()*1.6), vy:-1, col:col});
+  }
+  function pt(e){
+    var r = cv.getBoundingClientRect();
+    return { x:(e.clientX-r.left)*(W/r.width), y:(e.clientY-r.top)*(W/r.width) };
+  }
+  function overJar(p){ return p.x > JX1-14 && p.x < JX2+14 && p.y > JTOP-52 && p.y < JBOT+8; }
+
+  cv.addEventListener('pointerdown', function(e){
+    if (mode !== 'risk') return;
+    var p = pt(e), i;
+    for (i=0;i<TRAY.length;i++){
+      var t = TRAY[i], ty = trayY(t);
+      if ((p.x-t.x)*(p.x-t.x)+(p.y-ty)*(p.y-ty) < 28*28){
+        drag = {col:t.col, x:t.x, y:ty, tx:p.x, ty:p.y};
+        cv.classList.add('dragging'); cv.setPointerCapture(e.pointerId); return;
+      }
+    }
+    for (i=marbles.length-1;i>=0;i--){
+      var m = marbles[i];
+      if ((p.x-m.x)*(p.x-m.x)+(p.y-m.y)*(p.y-m.y) < (R+5)*(R+5)){
+        marbles.splice(i,1);
+        drag = {col:m.col, x:m.x, y:m.y, tx:p.x, ty:p.y};
+        cv.classList.add('dragging'); cv.setPointerCapture(e.pointerId); tally(); return;
+      }
+    }
+  });
+  cv.addEventListener('pointermove', function(e){
+    if (!drag) return; var p = pt(e); drag.tx = p.x; drag.ty = p.y;
+  });
+  function endDrag(){
+    if (!drag) return;
+    if (overJar({x:drag.tx, y:drag.ty}) && marbles.length < MAXN){
+      add(drag.col, Math.min(Math.max(drag.x, JX1+R), JX2-R), Math.max(drag.y, JTOP+R));
+    } else {
+      spill(drag.col, drag.x, drag.y);
+    }
+    drag = null; tipDone = true; cv.classList.remove('dragging'); tally();
+  }
+  cv.addEventListener('pointerup', endDrag);
+  cv.addEventListener('pointercancel', endDrag);
+  cv.addEventListener('pointerleave', function(){ if (drag) endDrag(); });
+
+  function physics(){
+    var g = 0.4, dmp = 0.992, rest = 0.4, i, b;
+    for (i=0;i<marbles.length;i++){
+      var m = marbles[i];
+      m.vy += g; m.vx *= dmp; m.vy *= dmp; m.x += m.vx; m.y += m.vy;
+      if (m.x < JX1+R){ m.x = JX1+R; m.vx = Math.abs(m.vx)*rest; }
+      if (m.x > JX2-R){ m.x = JX2-R; m.vx = -Math.abs(m.vx)*rest; }
+      if (m.y > JBOT-R){ m.y = JBOT-R; m.vy = -Math.abs(m.vy)*rest; m.vx *= 0.93; }
+      if (m.y < JTOP+R){ m.y = JTOP+R; m.vy = Math.abs(m.vy)*0.3; }
+    }
+    for (i=0;i<marbles.length;i++){
+      for (b=i+1;b<marbles.length;b++){
+        var p = marbles[i], q = marbles[b];
+        var dx = q.x-p.x, dy = q.y-p.y, d2 = dx*dx+dy*dy, mn = R*2;
+        if (d2 > 0.0001 && d2 < mn*mn){
+          var d = Math.sqrt(d2), ov = (mn-d)/2, nx = dx/d, ny = dy/d;
+          p.x -= nx*ov; p.y -= ny*ov; q.x += nx*ov; q.y += ny*ov;
+          var rv = (q.vx-p.vx)*nx + (q.vy-p.vy)*ny;
+          if (rv < 0){ var im = rv*0.5; p.vx += im*nx; p.vy += im*ny; q.vx -= im*nx; q.vy -= im*ny; }
+        }
+      }
+    }
+    // marbles that missed the jar: floor, roll, exit the frame
+    for (i=loose.length-1;i>=0;i--){
+      var L = loose[i];
+      L.vy += 0.42; L.y += L.vy; L.x += L.vx;
+      if (L.y > FLOOR-R){ L.y = FLOOR-R; L.vy = -Math.abs(L.vy)*0.34; L.vx *= 0.995; }
+      if (L.x < -R*2.2 || L.x > W+R*2.2 || L.y > H+R*3) loose.splice(i,1);
+    }
+  }
+
+  function jarPath(){
+    ctx.beginPath();
+    ctx.moveTo(JX1+5, JTOP-30);
+    ctx.lineTo(JX1+5, JTOP-14);
+    ctx.bezierCurveTo(JX1+5, JTOP-2, JX1-10, JTOP, JX1-10, JTOP+24);
+    ctx.lineTo(JX1-10, JBOT-24);
+    ctx.quadraticCurveTo(JX1-10, JBOT+12, JX1+20, JBOT+12);
+    ctx.lineTo(JX2-20, JBOT+12);
+    ctx.quadraticCurveTo(JX2+10, JBOT+12, JX2+10, JBOT-24);
+    ctx.lineTo(JX2+10, JTOP+24);
+    ctx.bezierCurveTo(JX2+10, JTOP, JX2-5, JTOP-2, JX2-5, JTOP-14);
+    ctx.lineTo(JX2-5, JTOP-30);
+    ctx.closePath();
+  }
+
+  function ball(x, y, col, alpha, rad){
+    rad = rad || R;
+    ctx.globalAlpha = alpha;
+    ctx.beginPath(); ctx.arc(x, y, rad, 0, 6.2832);
+    ctx.fillStyle = col === 'red' ? C.maroon : C.sky; ctx.fill();
+    ctx.beginPath(); ctx.arc(x-rad*0.32, y-rad*0.36, rad*0.26, 0, 6.2832);
+    ctx.fillStyle = 'rgba(255,255,255,.6)'; ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+
+  function tooltip(){
+    if (tipA < 0.02) return;
+    var cx = 181, cy = 22;
+    var wob = Math.sin(t0*0.0072) * 0.035;
+    var pulse = 1 + Math.sin(t0*0.0026) * 0.045;
+    ctx.save();
+    ctx.globalAlpha = tipA;
+    ctx.translate(cx, cy); ctx.rotate(wob); ctx.scale(pulse, pulse); ctx.translate(-cx, -cy);
+    ctx.font = '700 12px Helvetica, Arial, sans-serif';
+    var label = 'drag one down into the jar';
+    var w = ctx.measureText(label).width + 22, hh = 26;
+    var bx = cx - w/2, by = cy - hh/2;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(bx, by, w, hh, 6); else ctx.rect(bx, by, w, hh);
+    ctx.fillStyle = C.teal; ctx.fill();
+    ctx.beginPath(); ctx.moveTo(cx-7, by+hh); ctx.lineTo(cx+7, by+hh); ctx.lineTo(cx, by+hh+8);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = C.navy; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(label, cx, cy+0.5);
+    ctx.restore();
+  }
+
+  function render(){
+    ctx.clearRect(0,0,W,H);
+    var clear = 1 - opq;
+
+    if (clear > 0.02){
+      ctx.globalAlpha = clear;
+      TRAY.forEach(function(t){ ball(t.x, trayY(t), t.col, clear, R+2); });
+      ctx.globalAlpha = 1;
+      if (!drag) { ctx.globalAlpha = clear; tooltip(); ctx.globalAlpha = 1; }
+    }
+
+    jarPath();
+    ctx.fillStyle = 'rgba(255,255,255,' + (0.74*clear) + ')'; ctx.fill();
+    ctx.fillStyle = 'rgba(118,59,86,' + (0.94*opq) + ')'; ctx.fill();
+    ctx.strokeStyle = C.navy; ctx.lineWidth = 3.2; ctx.stroke();
+
+    // the word, glowing up while a marble hovers over the mouth
+    if (dropA > 0.02){
+      ctx.save();
+      ctx.shadowColor = C.teal; ctx.shadowBlur = 26*dropA;
+      ctx.fillStyle = 'rgba(59,85,118,' + (0.42*dropA) + ')';
+      ctx.font = '700 ' + (30 + 4*dropA) + 'px Helvetica, Arial, sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('drop', (JX1+JX2)/2, (JTOP+JBOT)/2);
+      ctx.restore();
+    }
+
+    if (clear > 0.02){
+      var n = marbles.length, pct = n ? Math.round(100/n) + '%' : '';
+      marbles.forEach(function(m){
+        ball(m.x, m.y, m.col, clear);
+        if (clear > 0.6){
+          ctx.globalAlpha = clear;
+          ctx.fillStyle = m.col === 'red' ? '#fff' : '#1d2b3a';
+          ctx.font = '700 9px Helvetica, Arial, sans-serif';
+          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          ctx.fillText(pct, m.x, m.y+0.5);
+          ctx.globalAlpha = 1;
+        }
+      });
+      loose.forEach(function(L){ ball(L.x, L.y, L.col, clear*0.9); });
+      if (flashRef && marbles.indexOf(flashRef) !== -1){
+        var age = (t0 - flashAt) / 900;
+        if (age < 1){
+          ctx.save();
+          ctx.globalAlpha = (1-age) * clear;
+          ctx.strokeStyle = C.teal; ctx.lineWidth = 3.5;
+          ctx.beginPath(); ctx.arc(flashRef.x, flashRef.y, R + 5 + age*13, 0, 6.2832); ctx.stroke();
+          ctx.restore();
+        } else flashRef = null;
+      }
+    }
+
+    // the lid, sliding on once the jar is full
+    if (lid > 0.01){
+      var ly = (JTOP-46) + (1-lid)*-26;
+      ctx.globalAlpha = lid * clear;
+      ctx.fillStyle = C.navy;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(JX1-2, ly, (JX2-JX1)+4, 15, 4);
+      else ctx.rect(JX1-2, ly, (JX2-JX1)+4, 15);
+      ctx.fill();
+      ctx.fillRect(JX1+8, ly+15, (JX2-JX1)-16, 7);
+      ctx.globalAlpha = 1;
+    }
+
+    if (opq > 0.05){
+      ctx.save(); jarPath(); ctx.clip();
+      fallers.forEach(function(f){
+        var fade = Math.max(0, Math.min(1, (JTOP+76 - f.y)/44));
+        ball(f.x, f.y, f.col, fade*opq);
+      });
+      ctx.restore();
+      fallers.forEach(function(f){ if (f.y < JTOP-4) ball(f.x, f.y, f.col, opq); });
+    }
+
+    ctx.strokeStyle = 'rgba(255,255,255,' + (0.9*clear + 0.3*opq) + ')';
+    ctx.lineWidth = 7; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(JX1+8, JTOP+56);
+    ctx.quadraticCurveTo(JX1-1, JBOT-100, JX1+10, JBOT-58); ctx.stroke();
+
+    if (drag) ball(drag.x, drag.y, drag.col, 1);
+  }
+
+  function loop(ts){
+    t0 = ts || 0;
+    opq += (opqTarget - opq) * 0.055;
+    var lidTarget = (mode === 'risk' && marbles.length >= MAXN) ? 1 : 0;
+    lid += (lidTarget - lid) * 0.09;
+    var dropTarget = (drag && overJar({x:drag.tx, y:drag.ty}) && marbles.length < MAXN) ? 1 : 0;
+    dropA += (dropTarget - dropA) * 0.12;
+    tipA += ((tipDone || mode !== 'risk' ? 0 : 1) - tipA) * 0.08;
+    if (drag){ drag.x += (drag.tx - drag.x) * 0.22; drag.y += (drag.ty - drag.y) * 0.22; }
+
+    if (mode === 'risk' || opq < 0.98) physics();
+    if (mode === 'unc'){
+      if (!spawnAt || t0 - spawnAt > 900){
+        spawnAt = t0;
+        fallers.push({ x:(JX1+JX2)/2 - 26 + Math.random()*52, y:JTOP-70, vy:1.2,
+                       col: Math.random() < 0.5 ? 'red' : 'blue' });
+      }
+      for (var i = fallers.length-1; i >= 0; i--){
+        var f = fallers[i]; f.vy += 0.34; f.y += f.vy;
+        if (f.y > JTOP + 110) fallers.splice(i,1);
+      }
+    }
+    render();
+    requestAnimationFrame(loop);
+  }
+
+  function tally(){
+    var r = 0;
+    marbles.forEach(function(m){ if (m.col === 'red') r++; });
+    var n = marbles.length, b = n - r;
+    var pr = n ? Math.round(r/n*100) : 0, pb = n ? 100 - pr : 0;
+    document.getElementById('pRed').textContent  = n ? pr + '%' : '\u2014';
+    document.getElementById('pBlue').textContent = n ? pb + '%' : '\u2014';
+    document.getElementById('fRed').textContent  = n ? r + ' of ' + n + ' marbles' : 'empty jar';
+    document.getElementById('fBlue').textContent = n ? b + ' of ' + n + ' marbles' : 'empty jar';
+    document.getElementById('sideLine').textContent = !n
+      ? 'Drag some marbles in.'
+      : (n >= MAXN ? 'Jar full, lid on. Take one out to change the odds.'
+                   : 'Add or take one away and the odds follow.');
+  }
+
+  function clearDraws(sub, log){
+    riskDraws = []; flashRef = null;
+    var w = document.getElementById('vWrap');
+    w.classList.remove('in');
+    document.getElementById('vWord').textContent = '\u2014';
+    document.getElementById('vWord').className = 'vbig';
+    document.getElementById('vSub').textContent = sub;
+    document.getElementById('vLog').textContent = log;
+    setTimeout(function(){ w.classList.add('in'); }, 30);
+  }
+
+  function refill(){
+    hidden = []; draws = [];
+    bias = 0.3 + Math.random()*0.4;
+    var n = 8 + Math.floor(Math.random()*10);
+    for (var i=0;i<n;i++) hidden.push(Math.random() < bias ? 'red' : 'blue');
+    var w = document.getElementById('vWrap');
+    w.hidden = false; w.classList.remove('in');
+    document.getElementById('vWord').textContent = '\u2014';
+    document.getElementById('vWord').className = 'vbig';
+    document.getElementById('vSub').textContent = 'no draws yet';
+    document.getElementById('vLog').textContent = '';
+    setTimeout(function(){ w.classList.add('in'); }, 30);
+  }
+
+  function verdict(guess, got, sub, log){
+    var word = document.getElementById('vWord');
+    word.textContent = guess === got ? 'Right' : 'Wrong';
+    word.className = 'vbig ' + (guess === got ? 'right' : 'wrong');
+    document.getElementById('vSub').textContent = sub;
+    document.getElementById('vLog').textContent = log;
+    var w = document.getElementById('vWrap');
+    w.classList.remove('in'); void w.offsetWidth; w.classList.add('in');
+  }
+
+  function drawFromJar(guess){
+    var n = marbles.length;
+    if (!n){
+      document.getElementById('vWord').textContent = '\u2014';
+      document.getElementById('vWord').className = 'vbig';
+      document.getElementById('vSub').textContent = 'the jar is empty';
+      document.getElementById('vLog').textContent = 'Drag a few marbles in first.';
+      return;
+    }
+    var pick = marbles[Math.floor(Math.random()*n)];
+    var got = pick.col;
+    flashRef = pick; flashAt = t0;
+    pick.vy -= 4.2; pick.vx += (Math.random()-0.5)*2.4;   // it jumps when it is drawn
+    riskDraws.push({g:guess, got:got});
+    var right = 0, gotRed = 0, r = 0;
+    riskDraws.forEach(function(d){ if (d.g === d.got) right++; if (d.got === 'red') gotRed++; });
+    marbles.forEach(function(m){ if (m.col === 'red') r++; });
+    var stated = Math.round(r/n*100);
+    var seen = Math.round(gotRed/riskDraws.length*100);
+    verdict(guess, got, 'you drew ' + (got === 'red' ? 'maroon' : 'navy'),
+      right + ' of ' + riskDraws.length + ' calls right. Maroon has come up ' + seen +
+      '% of the time against a stated ' + stated + '%. Keep going and those two converge, which is the whole point of knowing what is in there.');
+  }
+
+  function doDraw(guess){
+    if (mode === 'risk') return drawFromJar(guess);
+    if (!hidden.length) refill();
+    var got = hidden.splice(Math.floor(Math.random()*hidden.length), 1)[0];
+    draws.push({g:guess, got:got});
+    bias = Math.min(0.9, Math.max(0.1, bias + (Math.random()-0.5)*0.32));
+    var addN = 1 + Math.floor(Math.random()*3), i;
+    for (i=0;i<addN;i++) hidden.push(Math.random() < bias ? 'red' : 'blue');
+    for (i=0;i<addN;i++){
+      fallers.push({ x:(JX1+JX2)/2 - 30 + Math.random()*60, y:JTOP - 80 - i*34, vy:1.4,
+                     col: Math.random() < bias ? 'red' : 'blue' });
+    }
+    var right = 0;
+    draws.forEach(function(d){ if (d.g === d.got) right++; });
+    verdict(guess, got, 'you drew ' + (got === 'red' ? 'maroon' : 'navy'),
+      right + ' of ' + draws.length + ' so far. ' + addN +
+      ' more went in while you were reaching, and there is still no percentage to converge on.');
+  }
+
+  function setMode(m){
+    if (m === mode) return;
+    mode = m;
+    var risk = m === 'risk';
+    opqTarget = risk ? 0 : 1;
+    tool.classList.toggle('unc', !risk);
+    document.querySelector('.jp-risk').hidden = !risk;
+    document.querySelector('.jp-unc').hidden = risk;
+    document.getElementById('jarHint').textContent = risk
+      ? 'Drag a marble down into the jar. Drop one outside and it rolls away. The jar holds ten.'
+      : 'Same jar, now you cannot see in. Call a color and reach.';
+    Array.prototype.forEach.call(document.querySelectorAll('.modebtn'), function(btn){
+      btn.classList.toggle('on', btn.dataset.mode === m);
+    });
+    if (risk){ fallers = []; clearDraws('no draws yet', 'Call a color and pull one out. The jar puts it straight back.'); tally(); }
+    else {
+      document.getElementById('sideLine').textContent = 'The numbers are still there. You just cannot read them.';
+      refill();
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.modebtn'), function(btn){
+    btn.addEventListener('click', function(){ setMode(btn.dataset.mode); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.drawbtn[data-guess]'), function(btn){
+    btn.addEventListener('click', function(){ doDraw(btn.dataset.guess); });
+  });
+  document.getElementById('jarReset').addEventListener('click', function(){
+    if (mode === 'risk') clearDraws('no draws yet', 'Call a color and pull one out. The jar puts it straight back.');
+    else refill();
+  });
+
+  [['red',150],['blue',196],['red',224],['blue',130],['blue',180],['red',210]].forEach(function(s,k){
+    add(s[0], s[1], JTOP + 28 + k*5);
+  });
+  scale(); tally();
+  document.getElementById('vLog').textContent = 'Call a color and pull one out. The jar puts it straight back.';
+  document.getElementById('vWrap').classList.add('in');
+  requestAnimationFrame(loop);
+})();
+</script>
+
+<script>
+(function(){
+  var root = document.getElementById('revGame');
+  if (!root) return;
+
+  var R1 = [
+    { tag:'A', cls:'stained', money:14, att:19,
+      body:'Gap in the market. Deck attached. Happy to talk whenever.',
+      truth:'Two lines and an attachment, with a ring where somebody put a mug down. It might have been a good idea. Nobody spent long finding out.' },
+    { tag:'B', cls:'', money:71, att:68,
+      body:'Forty-one interviews. Eleven said they would pay. Here is where the model breaks and what we would do about it.',
+      truth:'Finished, specific, and it argued with itself in places. You knew what it was claiming and what it was not.' },
+    { tag:'C', cls:'comic', money:22, att:27,
+      body:'this is going to be HUGE!!! just need a bit of runway :)',
+      truth:'Written like a text message. Whatever you thought of it, you could say why in a sentence, and you did.' }
+  ];
+
+  var R2 = [
+    { tag:'A', mod:0.72, x:41, y:222, money:58, att:62,
+      truth:'Reads well. Same idea as B and C underneath, worded slightly differently. Margins thin enough that whoever ships first wins.' },
+    { tag:'B', mod:0.84, x:27, y:168, money:70, att:74,
+      truth:'Reads well. Same idea as A and C. Nobody in this set has anything the others could not build.' },
+    { tag:'C', mod:0.97, x:14, y:120, money:88, att:92,
+      truth:'The one the model picked. It scores highest because it reads most like the applications you already funded. That is a statement about your history, not about this company.' },
+    { tag:'D', mod:0.16, x:76, y:280, money:9, att:12,
+      truth:'Badly written. Also the only one in the set holding a patent, and the only founder here who has shipped anything before.' },
+    { tag:'E', mod:0.58, x:56, y:252, money:40, att:44,
+      truth:'Perfectly reasonable. Competent team, crowded market, no edge in either direction. The honest answer is that you cannot tell.' }
+  ];
+
+  var STAGE_LO = 156, STAGE_HI = 318, BOXH = 104;
+  var row1 = document.getElementById('rgRow1'), row2 = document.getElementById('rgRow2');
+  var stage = document.getElementById('rgStage');
+  var fb1 = document.getElementById('rgFb1'), fb2 = document.getElementById('rgFb2');
+  var mt1 = document.getElementById('rgMeters1'), mt2 = document.getElementById('rgMeters2');
+  var stream = document.getElementById('rgStream');
+  var asked = null, spread = false;
+
+  function meter(m, a){
+    return '<div class="meter2">' +
+      '<div class="m2row"><span>money</span><span class="lane2"><i style="width:' + m + '%"></i></span><b>' + m + '%</b></div>' +
+      '<div class="m2row att"><span>attention</span><span class="lane2"><i style="width:' + a + '%"></i></span><b>' + a + '%</b></div>' +
+      '<p class="m2cap">share of this round\u2019s money and attention</p></div>';
+  }
+
+  function mkBox(d, kind){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'rgbox ' + (d.cls || ''); b.dataset.tag = d.tag;
+    var html = '<span class="tag">' + d.tag + '</span>';
+    if (kind === 'r1'){
+      html += '<span class="bodytext">' + d.body + '</span>';
+    } else {
+      for (var i = 0; i < 4; i++){
+        html += '<span class="ln" style="width:' + (92 - i*6) + '%;opacity:.34;background:var(--maroon)"></span>';
+      }
+      html += '<span class="madeby">created with AI</span>';
+    }
+    b.innerHTML = html;
+    return b;
+  }
+
+  R1.forEach(function(d){ row1.appendChild(mkBox(d, 'r1')); });
+  R2.forEach(function(d){ row2.appendChild(mkBox(d, 'r2')); });
+
+  function layout(){
+    var kids = row2.children;
+    for (var i = 0; i < kids.length; i++){
+      var el = kids[i], d = R2[i];
+      if (spread){
+        el.style.left = d.x + '%';
+        el.style.top  = Math.max(4, (d.y / 300) * STAGE_HI - BOXH + 10) + 'px';
+      } else {
+        el.style.left = (i * 19.4 + 1.5) + '%';
+        el.style.top  = (STAGE_LO - BOXH - 6) + 'px';
+      }
+    }
+  }
+  layout();
+  window.addEventListener('resize', layout);
+
+  row1.addEventListener('click', function(e){
+    var b = e.target.closest('.rgbox'); if (!b) return;
+    Array.prototype.forEach.call(row1.children, function(c){ c.classList.remove('sel'); });
+    b.classList.add('sel');
+    var d = R1.filter(function(x){ return x.tag === b.dataset.tag; })[0];
+    mt1.innerHTML = meter(d.money, d.att);
+    fb1.innerHTML = '<b>You picked ' + d.tag + '.</b> ' + d.truth +
+      ' You might have chosen wrong, but you could defend it, and so could the person who disagreed.';
+    document.getElementById('rgR2').classList.remove('locked');
+  });
+
+  function typeOut(el, text, done){
+    el.textContent = '';
+    var i = 0, cur = document.createElement('span');
+    cur.className = 'cursor'; el.appendChild(cur);
+    var timer = setInterval(function(){
+      i += 2;
+      cur.insertAdjacentText('beforebegin', text.slice(i-2, i));
+      if (i >= text.length){ clearInterval(timer); cur.remove(); if (done) done(); }
+    }, 16);
+  }
+
+  function sortOntoCurve(){
+    spread = true; stage.classList.add('spread');
+    var kids = row2.children;
+    for (var i = 0; i < kids.length; i++){
+      var el = kids[i], d = R2[i];
+      el.style.background  = 'rgba(118,59,86,' + (d.mod * 0.13).toFixed(3) + ')';
+      el.style.borderColor = 'rgba(118,59,86,' + (0.22 + d.mod * 0.62).toFixed(3) + ')';
+      var lines = el.querySelectorAll('.ln');
+      for (var k = 0; k < lines.length; k++){
+        lines[k].style.opacity = (0.14 + d.mod * 0.34).toFixed(2);
+        lines[k].style.width = Math.max(34, 92 - k * (2 + (1 - d.mod) * 15)).toFixed(0) + '%';
+      }
+    }
+    layout();
+  }
+
+  document.getElementById('rgAI').addEventListener('click', function(){
+    asked = 'ai';
+    stream.hidden = false; stream.className = 'rg-stream ai';
+    stream.innerHTML = '<span class="who">the model</span><span id="rgText"></span>';
+    Array.prototype.forEach.call(row2.children, function(c){ c.classList.remove('modal-pick'); });
+    typeOut(document.getElementById('rgText'),
+      'Reviewing five applications. Sorting by structural similarity to previously funded filings. ' +
+      'C, B and A cluster tightly around the established profile. E sits at the edge of it. ' +
+      'D departs sharply from the reference set and contains claims with no comparable support. ' +
+      'Recommendation: C. Highest alignment, lowest variance, clearest execution narrative.',
+      function(){
+        sortOntoCurve();
+        setTimeout(function(){
+          row2.querySelector('[data-tag="C"]').classList.add('modal-pick');
+          fb2.innerHTML = '<b>Four seconds, and it sorted them for you.</b> ' +
+            'Look at the axis it sorted them on. Not profit, not novelty, not whether the founder can build the thing. ' +
+            'How closely each one resembles what you have funded before. Click any of the five.';
+        }, 700);
+      });
+  });
+
+  document.getElementById('rgExpert').addEventListener('click', function(){
+    asked = 'expert';
+    stream.hidden = false; stream.className = 'rg-stream';
+    stream.innerHTML = '<span class="who">someone who has worked in this field for twenty years</span><span id="rgText"></span>';
+    Array.prototype.forEach.call(row2.children, function(c){ c.classList.remove('modal-pick'); });
+    setTimeout(function(){
+      typeOut(document.getElementById('rgText'),
+        'Three of those are the same company with different names. I would not spend the meeting on them. ' +
+        'The one written badly is the one I would call, because bad writing is cheap to fix and the thing underneath might not be copyable. ' +
+        'I cannot tell you which of these makes money. Ask all five what they have already built, then come back to me.',
+        function(){
+          fb2.innerHTML = '<b>Worse to hold, better to use.</b> No ranking, no ordering, no confidence score, and more work than you had a minute ago. ' +
+            'Notice that nothing moved on the page. Click any of the five.';
+        });
+    }, 520);
+  });
+
+  row2.addEventListener('click', function(e){
+    var b = e.target.closest('.rgbox'); if (!b) return;
+    Array.prototype.forEach.call(row2.children, function(c){ c.classList.remove('sel'); });
+    b.classList.add('sel');
+    var d = R2.filter(function(x){ return x.tag === b.dataset.tag; })[0];
+    var tail = asked === 'ai'
+      ? ' The model was not lying to you. It answered the question it can answer, and you asked it the one it cannot.'
+      : (asked === 'expert'
+          ? ' Even with that in hand, this is a judgment call, and it is still yours.'
+          : ' Ask one of the two for help, then read this again.');
+    mt2.innerHTML = meter(d.money, d.att);
+    fb2.innerHTML = '<b>' + d.tag + '.</b> ' + d.truth + tail;
+    picked = d.tag;
+    document.getElementById('rgFwd').hidden = false;
+    if (!started){ started = true; start(); }
+  });
+
+  // ---- twenty runs of what happens next, two seconds apart
+  var picked = null, runs = 0, book = {}, timer = null, started = false, paused = false;
+  var TOTAL = 20;
+  var forcedRun = 1 + Math.floor(Math.random() * 4);   // D hits its ceiling early, at least once
+  var OUT = {
+    A: [[0.45,0.2,'undercut within a year, sold for parts'],
+        [0.35,0.9,'ticks along, returns most of the money'],
+        [0.20,1.8,'solid, unspectacular, everyone is content']],
+    B: [[0.40,0.1,'three competitors shipped the same thing, folded quietly'],
+        [0.40,0.8,'survives, never quite gets going'],
+        [0.20,2.2,'wins its corner of a crowded market']],
+    C: [[0.35,0.4,'the category filled up, margins went to nothing'],
+        [0.45,1.1,'fine. Returns the money and a bit. Nobody writes it up'],
+        [0.20,2.0,'a decent outcome in a market that stayed decent']],
+    E: [[0.30,0.3,'ran out of room before it ran out of money'],
+        [0.50,1.4,'steady, profitable, stays small'],
+        [0.20,3.0,'quietly becomes the default in its niche']],
+    D: [[0.60,0.0,'dead in eighteen months, at least in this table'],
+        [0.15,0.5,'limps on, sells the patent, everyone breaks even'],
+        [0.15,12,'the patent holds and the category forms around it'],
+        [0.10,30,'it turns out there was a market. There is now, anyway']]
+  };
+
+  function sample(tag){
+    var rows = OUT[tag];
+    if (tag === 'D' && runs === forcedRun) return rows[rows.length-1];
+    var r = Math.random(), acc = 0;
+    for (var i = 0; i < rows.length; i++){
+      acc += rows[i][0];
+      if (r <= acc) return rows[i];
+    }
+    return rows[rows.length-1];
+  }
+
+  function playForward(){
+    runs++;
+    var out = document.getElementById('rgOut');
+    out.innerHTML = '';
+    ['C','B','A','E','D'].forEach(function(tag, k){
+      var res = sample(tag), mult = res[1];
+      if (!book[tag]) book[tag] = { n:0, sum:0, dead:0, best:0 };
+      book[tag].n++; book[tag].sum += mult;
+      if (mult < 0.5) book[tag].dead++;
+      if (mult > book[tag].best) book[tag].best = mult;
+      var cls = mult < 0.5 ? 'dead' : (mult < 2.5 ? 'flat' : 'big');
+      var row = document.createElement('div');
+      row.className = 'oc ' + cls + (tag === picked ? ' you' : '');
+      row.innerHTML = '<span class="octag">' + tag + '</span>' +
+        '<span class="oclane"><i data-w="' + Math.min(100, mult/8*100).toFixed(0) + '"></i></span>' +
+        '<span class="ocx">' + (mult === 0 ? '0' : mult.toFixed(1)) + 'x</span>' +
+        '<span class="octxt">' + res[2] + (tag === picked ? ' &nbsp;\u2190 you funded this' : '') + '</span>';
+      out.appendChild(row);
+      setTimeout(function(){
+        row.classList.add('in');
+        var bar = row.querySelector('i');
+        bar.style.width = bar.dataset.w + '%';
+      }, 90 + k * 110);
+    });
+    tallyLine();
+    if (runs >= TOTAL) finish();
+  }
+
+  function tallyLine(){
+    var c = book.C, d = book.D, e = book.E;
+    var line = '<b>Run ' + runs + ' of ' + TOTAL + '.</b> ' +
+      'C averaging ' + (c.sum/c.n).toFixed(1) + 'x, best run ' + c.best.toFixed(1) + 'x. ' +
+      'E averaging ' + (e.sum/e.n).toFixed(1) + 'x. ' +
+      'D dead in ' + Math.round(d.dead/d.n*100) + '% of runs, averaging ' + (d.sum/d.n).toFixed(1) +
+      'x, best run ' + d.best.toFixed(1) + 'x.';
+    document.getElementById('rgTally').innerHTML = line;
+  }
+
+  function finish(){
+    clearInterval(timer); timer = null;
+    document.getElementById('rgPlay').textContent = 'Run twenty more';
+    var c = book.C, d = book.D;
+    document.getElementById('rgTally').innerHTML =
+      '<b>Twenty runs.</b> C averaged ' + (c.sum/c.n).toFixed(1) + 'x and topped out at ' + c.best.toFixed(1) + 'x. ' +
+      'D was dead in ' + Math.round(d.dead/d.n*100) + '% of them and still averaged ' + (d.sum/d.n).toFixed(1) + 'x. ' +
+      'So the screen was right about D most of the time, and wrong about it on average. ' +
+      'Now remember that you get one run, you never see the rows you did not fund, and nobody is keeping this table.';
+  }
+
+  function start(){
+    if (timer) return;
+    paused = false;
+    document.getElementById('rgPlay').textContent = 'Pause';
+    if (runs >= TOTAL){ runs = 0; book = {}; forcedRun = 1 + Math.floor(Math.random()*4); }
+    playForward();
+    timer = setInterval(playForward, 2000);
+  }
+  function pause(){
+    clearInterval(timer); timer = null; paused = true;
+    document.getElementById('rgPlay').textContent = 'Resume';
+  }
+
+  document.getElementById('rgPlay').addEventListener('click', function(){
+    if (timer) pause(); else start();
+  });
+
+})();
+</script>
+
+<script>
+(function(){
+  var game = document.getElementById('fgGame');
+  if (!game) return;
+
+  var F1 = [
+    { sees:1, t:'Four named competitors, two with public exits' },
+    { sees:1, t:'Market size, with a citation' },
+    { sees:1, t:'Unit economics shaped like the last ten you funded' },
+    { sees:1, t:'A plain, conventional way of describing itself' },
+    { sees:0, t:'A crowded category and nothing anyone else cannot copy' }
+  ];
+  var F2 = [
+    { sees:0, t:'A granted patent, and a process nobody else can run' },
+    { sees:0, t:'A founder who has shipped twice before' },
+    { sees:0, t:'Eleven people who have already paid for it' },
+    { sees:1, t:'No comparable companies to point at' },
+    { sees:1, t:'A category that does not have a name yet' }
+  ];
+
+  var l1 = document.getElementById('fgL1'), l2 = document.getElementById('fgL2');
+  var s1 = document.getElementById('fgS1'), s2 = document.getElementById('fgS2');
+  var fb = document.getElementById('fgFb');
+  var done = false;
+
+  function fill(ul, items){
+    items.forEach(function(it){
+      var li = document.createElement('li');
+      li.className = it.sees ? 'sees' : 'blind';
+      li.innerHTML = '<i>' + (it.sees ? '\u25c9' : '\u2715') + '</i><span>' + it.t + '</span>';
+      ul.appendChild(li);
+    });
+  }
+  fill(l1, F1); fill(l2, F2);
+
+  function revealList(ul, delay){
+    Array.prototype.forEach.call(ul.children, function(li, k){
+      setTimeout(function(){ li.classList.add('in'); }, delay + k * 130);
+    });
+  }
+  function countTo(el, target, delay){
+    setTimeout(function(){
+      var v = 0;
+      var t = setInterval(function(){
+        v += Math.max(1, Math.round((target - v) * 0.18));
+        if (v >= target){ v = target; clearInterval(t); }
+        el.textContent = v;
+      }, 40);
+    }, delay);
+  }
+
+  game.addEventListener('click', function(e){
+    var b = e.target.closest('[data-g]');
+    if (!b || done) return;
+    done = true;
+    var guessed = b.dataset.g;
+    Array.prototype.forEach.call(document.querySelectorAll('#fgGuess [data-g]'), function(x){
+      x.style.opacity = x === b ? '1' : '.4';
+    });
+    document.getElementById('fgC1').classList.add('won');
+    revealList(l1, 260); revealList(l2, 460);
+    countTo(s1, 87, 1500); countTo(s2, 24, 1700);
+    setTimeout(function(){
+      fb.innerHTML = (guessed === '1'
+        ? '<b>Of course it does.</b> '
+        : '<b>It prefers the first one.</b> ') +
+        'Teal means the screen can see it. Maroon means it cannot. Look at what falls on each side. ' +
+        'Everything that makes the second application worth funding is invisible, and the one thing it can see about it counts against it. ' +
+        'Everything that makes the first one risky is invisible too.' +
+        '<br><br>Here is the uncomfortable part. You knew the answer before you opened either folder, and so does every founder filling one in. ' +
+        'The more a screen like this decides on its own, the harder it pulls everyone toward writing the first folder.';
+    }, 2600);
+  });
+})();
+</script>
+</body>
+</html>
