@@ -882,6 +882,10 @@ footer strong{color:var(--white)}
 .rg-tally{margin-top:.9em;font-size:.86rem;color:var(--muted);line-height:1.6}
 .rg-tally b{font-family:var(--head);color:var(--navy)}
 @media (max-width:620px){ .oc{grid-template-columns:1.6em 1fr 3.4em;} .oc .octxt{grid-column:1/-1} }
+/* reading focus: the block at the middle of the screen stays bright, the rest eases back */
+.fx{transition:opacity .5s cubic-bezier(.4,0,.2,1)}
+.fx:hover,.fx:focus-within{opacity:1!important}
+@media (prefers-reduced-motion:reduce){.fx{transition:none}}
 </style>
 </head>
 <body>
@@ -903,7 +907,7 @@ footer strong{color:var(--white)}
       <span class="src">The car at the curb was thought up on a call with the authors, not taken from the paper. Captions below mark the paper's own examples.</span>
       <div class="hero-stand">
         <p>Founders and the people who fund them now ask tools like ChatGPT and Claude what a new business idea is worth.</p>
-        <p><b>“AI-mediated plausibility regimes,”</b> a theory paper in this journal by Farsan Madjdi and Bernd Wurth of the University of Glasgow, pins down what that answer measures and how much weight it should carry.</p>
+        <p><b>“AI-mediated plausibility regimes,”</b> a theory paper in this journal by Farsan Madjdi and Bernd Wurth of the University of Glasgow, pins down what that answer measures, so you can use it on purpose.</p>
         <p>I got the authors on a call. Nine ideas came out of it, each a section below.</p>
       </div>
     </div>
@@ -2656,6 +2660,29 @@ footer strong{color:var(--white)}
         'The more a screen like this decides on its own, the harder it pulls everyone toward writing the first folder.';
     }, 2600);
   });
+})();
+</script>
+<script>
+(function(){
+  var blocks = [].slice.call(document.querySelectorAll('.origin .wrap > .inner > *, .closer .wrap > .inner > *, .scene .wrap > *, .people .wrap > *'))
+    .filter(function(b){ return !b.matches('input, .inner'); });
+  blocks.forEach(function(b){ b.classList.add('fx'); });
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var vh = window.innerHeight, c = vh * .5, reach = vh * .38;
+    blocks.forEach(function(b){
+      var r = b.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > vh * 2) return;
+      var d = r.top > c ? r.top - c : r.bottom < c ? c - r.bottom : 0;
+      b.style.opacity = d === 0 ? 1 : Math.max(.24, 1 - d / reach).toFixed(2);
+    });
+  }
+  function ask(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', ask, {passive:true});
+  window.addEventListener('resize', ask);
+  document.addEventListener('change', ask);
+  update();
 })();
 </script>
 </body>
